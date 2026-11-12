@@ -1,0 +1,537 @@
+{
+ "170083|DDR4 SODIMM": [
+  {
+   "itemId": "v1|900000000001|0",
+   "title": "Samsung 16GB DDR4 SODIMM PC4-2666V Laptop Memory",
+   "price": {
+    "value": "64.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000002|0",
+   "title": "Crucial 8GB DDR4 2400MHz SODIMM Laptop RAM",
+   "price": {
+    "value": "34.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000003|0",
+   "title": "Kingston 16GB (2x8GB) DDR4 SO-DIMM Kit",
+   "price": {
+    "value": "70.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000004|0",
+   "title": "SK Hynix 32GB DDR4 3200 SODIMM",
+   "price": {
+    "value": "144.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000005|0",
+   "title": "Micron 16GB DDR4 SODIMM 2666MHz notebook memory",
+   "price": {
+    "value": "76.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000006|0",
+   "title": "Corsair Vengeance 8GB DDR4 SODIMM",
+   "price": {
+    "value": "40.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000007|0",
+   "title": "Job lot 10 x 4GB DDR4 SODIMM laptop RAM",
+   "price": {
+    "value": "60.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000008|0",
+   "title": "DDR4 SODIMM 8GB 16GB 32GB laptop memory - choose size",
+   "price": {
+    "value": "25.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "170083|DDR4 desktop memory": [
+  {
+   "itemId": "v1|900000000009|0",
+   "title": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 3200 Desktop Memory",
+   "price": {
+    "value": "56.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000010|0",
+   "title": "Crucial 8GB DDR4 2666 UDIMM Desktop RAM",
+   "price": {
+    "value": "30.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000011|0",
+   "title": "Kingston Fury 32GB DDR4 3200MHz DIMM",
+   "price": {
+    "value": "124.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000012|0",
+   "title": "Samsung 16GB DDR4 PC4-2400T Desktop Memory",
+   "price": {
+    "value": "64.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000013|0",
+   "title": "HyperX 8GB DDR4 DIMM 2400MHz",
+   "price": {
+    "value": "34.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000014|0",
+   "title": "G.Skill Ripjaws V 16GB DDR4 3600 Desktop RAM",
+   "price": {
+    "value": "72.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000015|0",
+   "title": "Faulty Corsair 16GB DDR4 desktop memory untested",
+   "price": {
+    "value": "10.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000016|0",
+   "title": "16GB DDR4 RAM 2666MHz",
+   "price": {
+    "value": "50.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "170083|DDR3 SODIMM": [
+  {
+   "itemId": "v1|900000000017|0",
+   "title": "Samsung 8GB DDR3L SODIMM PC3L-12800S",
+   "price": {
+    "value": "10.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000018|0",
+   "title": "Hynix 4GB DDR3 SODIMM laptop",
+   "price": {
+    "value": "4.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000019|0",
+   "title": "Crucial 16GB (2x8GB) DDR3L SODIMM",
+   "price": {
+    "value": "18.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "170083|DDR5 SODIMM": [
+  {
+   "itemId": "v1|900000000020|0",
+   "title": "Crucial 16GB DDR5 4800 SODIMM",
+   "price": {
+    "value": "48.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000021|0",
+   "title": "Samsung 32GB DDR5 5600 SODIMM Laptop",
+   "price": {
+    "value": "110.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "|DDR4 RDIMM": [
+  {
+   "itemId": "v1|900000000022|0",
+   "title": "Samsung 32GB DDR4 PC4-2400T-R ECC Registered RDIMM Server Memory",
+   "price": {
+    "value": "40.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000023|0",
+   "title": "Dell PowerEdge R730 2x Xeon E5-2680 v4 64GB DDR4 RDIMM",
+   "price": {
+    "value": "180.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "177|32GB": [
+  {
+   "itemId": "v1|800000000001|0",
+   "legacyItemId": "800000000001",
+   "title": "Dell Latitude 5490 i5-8350U 32GB RAM 256GB SSD - cracked screen, spares or repairs",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000001?hash=item0",
+   "price": {
+    "value": "55.00",
+    "currency": "GBP"
+   },
+   "condition": "For parts or not working",
+   "conditionId": "7000",
+   "itemLocation": {
+    "city": "Leeds",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T08:14:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "6.99",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000002|0",
+   "legacyItemId": "800000000002",
+   "title": "Lenovo ThinkPad T480 i5-8250U 32GB RAM 512GB SSD",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000002?hash=item0",
+   "price": {
+    "value": "260.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Bristol",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T07:30:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "0.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000003|0",
+   "legacyItemId": "800000000003",
+   "title": "HP Stream 11 Celeron N4020 4GB RAM 32GB eMMC",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000003?hash=item0",
+   "price": {
+    "value": "45.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Hull",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T07:10:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "3.50",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000004|0",
+   "legacyItemId": "800000000004",
+   "title": "Apple MacBook Pro 14 M1 Pro 32GB 1TB spares or repairs",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000004?hash=item0",
+   "price": {
+    "value": "90.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "London",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T06:55:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "10.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000005|0",
+   "legacyItemId": "800000000005",
+   "title": "Dell Latitude 5590 i7-8650U No RAM No HDD (supports 32GB)",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000005?hash=item0",
+   "price": {
+    "value": "40.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Derby",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T06:40:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "8.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  }
+ ],
+ "179|32GB": [
+  {
+   "itemId": "v1|800000000011|0",
+   "legacyItemId": "800000000011",
+   "title": "Dell OptiPlex 7050 SFF i5-6500 32GB DDR4 500GB HDD",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000011?hash=item0",
+   "price": {
+    "value": "60.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Manchester",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T08:01:00.000Z"
+  },
+  {
+   "itemId": "v1|800000000012|0",
+   "legacyItemId": "800000000012",
+   "title": "Custom Gaming PC Ryzen 5 5600X 32GB RAM RTX 3060 12GB 1TB NVMe",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000012?hash=item0",
+   "price": {
+    "value": "520.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Cardiff",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T07:50:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "25.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000014|0",
+   "legacyItemId": "800000000014",
+   "title": "Dell OptiPlex 3080 Micro i5-10500T 8GB/16GB/32GB RAM - choose your spec",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000014?hash=item0",
+   "price": {
+    "value": "95.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Luton",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T07:20:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "0.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  }
+ ],
+ "179|64GB": [
+  {
+   "itemId": "v1|800000000013|0",
+   "legacyItemId": "800000000013",
+   "title": "HP EliteDesk 800 G4 Mini i5-8500T 64GB RAM 256GB NVMe",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000013?hash=item0",
+   "price": {
+    "value": "120.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Reading",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T07:45:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "8.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  },
+  {
+   "itemId": "v1|800000000011|0",
+   "legacyItemId": "800000000011",
+   "title": "Dell OptiPlex 7050 SFF i5-6500 32GB DDR4 500GB HDD",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000011?hash=item0",
+   "price": {
+    "value": "60.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Manchester",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T08:01:00.000Z"
+  }
+ ],
+ "11211|64GB": [
+  {
+   "itemId": "v1|800000000022|0",
+   "legacyItemId": "800000000022",
+   "title": "HP ProLiant DL380 Gen9 2x E5-2680 v4 64GB DDR4 no HDD",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000022?hash=item0",
+   "price": {
+    "value": "230.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Slough",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T06:30:00.000Z",
+   "shippingOptions": [
+    {
+     "shippingCostType": "FIXED",
+     "shippingCost": {
+      "value": "20.00",
+      "currency": "GBP"
+     }
+    }
+   ]
+  }
+ ],
+ "11211|128GB": [
+  {
+   "itemId": "v1|800000000021|0",
+   "legacyItemId": "800000000021",
+   "title": "Dell PowerEdge R720 2x E5-2650 v2 128GB DDR3 8x 600GB SAS",
+   "itemWebUrl": "https://www.ebay.co.uk/itm/800000000021?hash=item0",
+   "price": {
+    "value": "150.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000",
+   "itemLocation": {
+    "city": "Crewe",
+    "country": "GB"
+   },
+   "itemCreationDate": "2026-11-12T06:20:00.000Z"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+name: feed
+
+# Every two hours: eBay's licence wants displayed listings no more than six hours old, and the page
+# calls the feed stale after three. About 19 API calls a run, so roughly 230 a day.
+on:
+  schedule:
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore: ["data/**", "**.md"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feed
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest -q
+
+      # A push only runs the tests. If this step fails nothing is committed: the last feed stays.
+      - name: Build the feed
+        if: github.event_name != 'push'
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EPN_CAMPAIGN_ID: ${{ secrets.EPN_CAMPAIGN_ID }}
+        run: python -m ram_deal_finder run
+
+      - name: Commit the feed if it changed
+        if: github.event_name != 'push'
+        run: |
+          git add data/deals.json
+          if git diff --cached --quiet; then
+            echo "Feed unchanged."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "Update deals feed"
+          git push
