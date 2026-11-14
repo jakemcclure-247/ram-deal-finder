@@ -71,10 +71,15 @@ def memory_samples(items: list[dict]) -> list[tuple[str, str, float]]:
     samples = []
     for item in items:
         title, price = _text(item.get("title")), _gbp(item.get("price"))
-        sample = module_sample(title, price) if title and price else None
+        sample = module_sample(title, price) if title and price and not has_variations(item) else None
         if sample:
             samples.append(sample)
     return samples
+
+
+def has_variations(item: dict) -> bool:
+    """A listing with a spec picker: its price is the cheapest option, not the spec in its title."""
+    return bool(item.get("itemGroupType"))
 
 
 def unique(items: list[dict]) -> list[dict]:
@@ -95,7 +100,7 @@ def price_cap(refs: list[dict], ram_gb: int) -> int:
 
 def _deal(item: dict, category: str, refs: list[dict], affiliate: bool) -> dict | None:
     title, price, url = _text(item.get("title")), _gbp(item.get("price")), _url(item, affiliate)
-    if not title or price is None or price <= 0 or not url:
+    if not title or price is None or price <= 0 or not url or has_variations(item):
         return None
     memory = parse_computer(title, category, item.get("conditionId"))
     if memory is None:

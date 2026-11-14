@@ -169,6 +169,14 @@ def test_listings_that_are_not_deals():
     assert one_deal(laptop(price={"value": "109.57", "currency": "GBP"})) == []    # margin exactly nil
     assert len(one_deal(laptop(price={"value": "109.56", "currency": "GBP"}))) == 1
     assert one_deal(laptop(title="Dell Latitude 5490 i5-8350U No RAM")) == []
+    # a listing with a spec picker shows its cheapest option's price, not the titled spec's
+    assert one_deal(laptop(itemGroupType="SELLER_DEFINED_VARIATIONS")) == []
+
+
+def test_memory_listings_with_a_spec_picker_are_not_sampled():
+    picker = [dict(m, itemGroupType="SELLER_DEFINED_VARIATIONS") for m in modules()]
+    feed = build_feed([("laptop", laptop())], picker, None, NOW)
+    assert feed["referencePrices"] == [] and feed["deals"] == []
 
 
 def test_unknown_memory_type_is_priced_at_the_cheapest_and_says_so():

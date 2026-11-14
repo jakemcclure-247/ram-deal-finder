@@ -27,7 +27,10 @@ _SIZE = re.compile(r"(?:(?<!\d)(\d{1,2})\s*[x×*]\s*)?(?<![\d.,])(\d{1,4})\s*gb(
 
 _SKIP_BEFORE = re.compile(r"(?:up\s*to|max(?:imum)?|supports?|upgrad\w+\s+to|expand\w+\s+to)\s*$")
 _RAM_AFTER = re.compile(r"^[\s)\-]*(?:of\s+)?(?:ddr|ram\b|memory|mem\b|so-?dimm|dimm|l?rdimm|ecc\b|pc[345])")
-_STORAGE_AFTER = re.compile(r"^[\s)\-]*(?:ssd|hdd|nvme|emmc|m\.?2\b|sata|sas\b|sshd|hard|storage|flash|disk|drive|pcie|ufs|rom\b)")
+_STORAGE_AFTER = re.compile(r"^[\s)\-]*(?:ssd|hdd|nvme|emmc|m\.?\s?2\b|sata|sas\b|sshd|hard|storage|flash|disk|drive|pcie|ufs|rom\b)")
+# A title that names a drive but has no size we could pin on it: a bare size is probably that drive's.
+_STORAGE_WORD = re.compile(r"\b(?:ssd|hdd|nvme|emmc|sata|sas|sshd|hard\s*drive|m\.?\s?2)\b")
+_TB_SIZE = re.compile(r"\d\s*tb\b")
 _GPU_AFTER = re.compile(r"^[\s)\-]*(?:gpu|graphics|vram|gtx|rtx|nvidia|geforce|radeon|quadro|video|gddr)")
 _RAM_BEFORE = re.compile(r"(?:ram|memory|mem|ddr[345]l?)\s*[:\-=(]?\s*$")
 _STORAGE_BEFORE = re.compile(r"(?:ssd|hdd|nvme|emmc|hard\s*drive|storage|sata|sas|m\.2)\s*[:\-=(]?\s*$")
@@ -59,7 +62,7 @@ _FAULTY = re.compile(
     r"\b(?:spares?|repairs?|faulty|untested|not\s+working|non[\s-]working|for\s+parts|broken|no\s+power|no\s+display"
     r"|no\s+post|bios\s+lock(?:ed)?|dead|as[\s-]is|cracked|damaged)\b"
 )
-_LOW_END = re.compile(r"\b(?:celeron|atom|pentium|stream|chromebook|tablet|n\d{4})\b")
+_LOW_END = re.compile(r"\b(?:celeron|atom|pentium|stream|chromebook|tablet|detachable|n\d{4})\b")
 _SODIMM_DESKTOP = re.compile(
     r"\b(?:mini|micro|tiny|usff|nuc|aio|imac|dm|mff|1l)\b|\ball[\s-]in[\s-]one\b|\bthin\s+client\b"
 )
@@ -124,6 +127,9 @@ def _ram_size(low: str, category: str) -> tuple[int, str] | None:
         return (gb, "stated") if 2 <= gb <= STATED_CAP[category] else None
     plain = [s["gb"] for s in sizes if s["kind"] == "plain" and s["gb"] in RAM_SIZES and s["gb"] <= INFERRED_CAP[category]]
     if not plain or _LOW_END.search(low):  # a bare "32GB" on a Celeron is its eMMC storage
+        return None
+    drive_sized = _TB_SIZE.search(low) or any(s["kind"] == "storage" for s in _sizes(low))
+    if _STORAGE_WORD.search(low) and not drive_sized:  # "256GB 6Gbps SATA M.2 SSD": the size is the drive's
         return None
     return min(plain), "inferred"
 

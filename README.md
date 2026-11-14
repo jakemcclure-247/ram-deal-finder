@@ -42,7 +42,9 @@ Where the title leaves doubt, the estimate takes the cheaper reading and the dea
 | `postage-unknown` | eBay gave no postage cost (often collection only) |
 
 Left out altogether: no memory fitted, memory that is certainly soldered (LPDDR, Apple silicon, MacBook
-Air, Surface), pick-your-spec listings, and a bare "32GB" on a Celeron or similar, which is storage.
+Air, Surface), pick-your-spec listings (anything eBay marks as having variations, because the price shown
+is the cheapest option's), a bare "32GB" on a Celeron or similar, which is storage, and a bare size in a
+title that names a drive but gives no size for it.
 
 ## Setting up
 

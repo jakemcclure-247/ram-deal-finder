@@ -63,6 +63,9 @@ def test_computer_titles(title, category, gb, generations, form, confidence, war
     ("Dell PowerEdge R630 barebones chassis only", "server"),
     ("Lenovo ThinkPad T480 i5-8250U 256GB SSD", "laptop"),    # no memory size at all
     ("Lenovo ThinkPad T480 i5 256GB", "laptop"),              # too big to be a laptop's memory unless it says so
+    ("Dell VFR5T 256GB 6Gbps SATA M.2 2280 SSD - 1yr Wty", "server"),   # a drive: the size is the drive's
+    ("Lenovo ThinkSmart HUB 500 AIO PC-i5-7500T 128GB M. 2,8GB RAM-NO OS", "desktop"),
+    ("HP ENVY x2 13-j000na Detachable PC For Spares Or Repair 128gb", "desktop"),
 ])
 def test_computers_that_cannot_be_deals(title, category):
     assert parse_computer(title, category) is None
