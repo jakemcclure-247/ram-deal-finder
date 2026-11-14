@@ -1,0 +1,77 @@
+{
+ "generatedAt": "2026-11-14T09:42:43.068Z",
+ "marketplace": "EBAY_GB",
+ "currency": "GBP",
+ "affiliateLinks": false,
+ "stats": {
+  "listingsScanned": 1709,
+  "memoryListingsSampled": 1465,
+  "newDealsThisRun": 0
+ },
+ "referencePrices": [
+  {
+   "generation": "DDR3",
+   "form": "SODIMM",
+   "pricePerGb": 1.25,
+   "medianPerGb": 1.5,
+   "sampleSize": 168
+  },
+  {
+   "generation": "DDR3",
+   "form": "DIMM",
+   "pricePerGb": 1.22,
+   "medianPerGb": 1.39,
+   "sampleSize": 152
+  },
+  {
+   "generation": "DDR3",
+   "form": "RDIMM",
+   "pricePerGb": 0.67,
+   "medianPerGb": 0.89,
+   "sampleSize": 177
+  },
+  {
+   "generation": "DDR4",
+   "form": "SODIMM",
+   "pricePerGb": 2.8,
+   "medianPerGb": 3.11,
+   "sampleSize": 168
+  },
+  {
+   "generation": "DDR4",
+   "form": "DIMM",
+   "pricePerGb": 2.95,
+   "medianPerGb": 3.34,
+   "sampleSize": 175
+  },
+  {
+   "generation": "DDR4",
+   "form": "RDIMM",
+   "pricePerGb": 2.64,
+   "medianPerGb": 3.25,
+   "sampleSize": 179
+  },
+  {
+   "generation": "DDR5",
+   "form": "SODIMM",
+   "pricePerGb": 8.97,
+   "medianPerGb": 9.82,
+   "sampleSize": 162
+  },
+  {
+   "generation": "DDR5",
+   "form": "DIMM",
+   "pricePerGb": 10.99,
+   "medianPerGb": 12.37,
+   "sampleSize": 39
+  },
+  {
+   "generation": "DDR5",
+   "form": "RDIMM",
+   "pricePerGb": 22.34,
+   "medianPerGb": 23.67,
+   "sampleSize": 18
+  }
+ ],
+ "deals": []
+}
