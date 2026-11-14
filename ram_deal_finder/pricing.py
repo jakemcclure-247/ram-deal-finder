@@ -81,3 +81,40 @@ def estimate(ram_gb: int, price_per_gb: float, total_cost: float) -> tuple[float
     """(estRamValue, estMargin)."""
     value = round(RESALE_FACTOR * ram_gb * price_per_gb, 2)
     return value, round(value - total_cost, 2)
+
+
+# --- Other parts: drives by price per GB, graphics cards and processors by model ---
+
+DRIVE_KINDS = ["nvme", "ssd", "hdd", "sas"]
+DRIVE_PER_GB_RANGE = (0.002, 0.6)
+
+
+def drive_prices(samples) -> list[dict]:
+    """samples: (kind, GB, price) of single used drives. pricePerGb is the lower quartile, as for memory."""
+    groups: dict[str, list[float]] = defaultdict(list)
+    for kind, gb, price in samples:
+        per_gb = price / gb
+        if DRIVE_PER_GB_RANGE[0] <= per_gb <= DRIVE_PER_GB_RANGE[1]:
+            groups[kind].append(per_gb)
+    return [
+        {"kind": kind, "pricePerGb": round(quantile(groups[kind], 0.25), 4),
+         "medianPerGb": round(quantile(groups[kind], 0.5), 4), "sampleSize": len(groups[kind])}
+        for kind in DRIVE_KINDS if len(groups[kind]) >= MIN_SAMPLE
+    ]
+
+
+def model_price(kind: str, model: str, prices: list[float]) -> dict | None:
+    """The going price of one graphics card or processor model, or None from too few listings."""
+    if len(prices) < MIN_SAMPLE:
+        return None
+    return {"kind": kind, "model": model, "price": round(quantile(prices, 0.25), 2),
+            "median": round(quantile(prices, 0.5), 2), "sampleSize": len(prices)}
+
+
+def part_value(kind: str, key: str, count: int, gb: float, drive_refs: list[dict], model_refs: list[dict]) -> float | None:
+    """What the part should fetch after the same resale factor as memory; None when there is no price for it."""
+    if kind in DRIVE_KINDS:
+        ref = next((r for r in drive_refs if r["kind"] == kind), None)
+        return round(RESALE_FACTOR * count * gb * ref["pricePerGb"], 2) if ref else None
+    ref = next((r for r in model_refs if r["kind"] == kind and r["model"] == key), None)
+    return round(RESALE_FACTOR * count * ref["price"], 2) if ref else None

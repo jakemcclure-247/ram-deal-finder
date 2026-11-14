@@ -533,5 +533,211 @@
    },
    "itemCreationDate": "2026-11-12T06:20:00.000Z"
   }
+ ],
+ "175669|SATA SSD 2.5": [
+  {
+   "itemId": "v1|900000000024|0",
+   "title": "Crucial BX500 240GB SATA SSD 2.5",
+   "price": {
+    "value": "12.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000025|0",
+   "title": "Samsung 860 EVO 500GB 2.5 SATA SSD",
+   "price": {
+    "value": "25.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000026|0",
+   "title": "Kingston A400 480GB SATA SSD",
+   "price": {
+    "value": "28.80",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000027|0",
+   "title": "SanDisk 256GB SSD 2.5 inch SATA",
+   "price": {
+    "value": "16.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000028|0",
+   "title": "WD Blue 1TB SATA SSD 2.5",
+   "price": {
+    "value": "70.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000029|0",
+   "title": "Job lot 10x 120GB SATA SSD",
+   "price": {
+    "value": "30.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000030|0",
+   "title": "Seagate 2TB external USB hard drive",
+   "price": {
+    "value": "35.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "164|I5-6500": [
+  {
+   "itemId": "v1|900000000031|0",
+   "title": "Intel Core i5-6500 3.2GHz SR2L6 CPU",
+   "price": {
+    "value": "10.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000032|0",
+   "title": "Intel i5-6500 quad core processor LGA1151",
+   "price": {
+    "value": "12.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000033|0",
+   "title": "Intel Core i5-6500 SR2L6",
+   "price": {
+    "value": "12.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000034|0",
+   "title": "Intel Core i5 6500 3.20GHz CPU processor",
+   "price": {
+    "value": "14.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000035|0",
+   "title": "Intel i5-6500 CPU tested",
+   "price": {
+    "value": "20.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000036|0",
+   "title": "Intel Core i5-6500 with motherboard and 8GB RAM",
+   "price": {
+    "value": "45.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000037|0",
+   "title": "Intel Core i5-6600 3.3GHz CPU",
+   "price": {
+    "value": "15.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
+ ],
+ "164|Xeon E5-2680 V4": [
+  {
+   "itemId": "v1|900000000038|0",
+   "title": "Intel Xeon E5-2680 v4 2.40GHz 14 core CPU SR2N7",
+   "price": {
+    "value": "36.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000039|0",
+   "title": "Intel Xeon E5-2680V4 SR2N7 processor",
+   "price": {
+    "value": "40.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000040|0",
+   "title": "Xeon E5-2680 v4 14C/28T CPU",
+   "price": {
+    "value": "40.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000041|0",
+   "title": "Intel Xeon E5-2680 v4 LGA2011-3",
+   "price": {
+    "value": "44.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000042|0",
+   "title": "Intel Xeon E5-2680 v4 2.4GHz processor tested",
+   "price": {
+    "value": "50.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  },
+  {
+   "itemId": "v1|900000000043|0",
+   "title": "2x Intel Xeon E5-2680 v4 matched pair",
+   "price": {
+    "value": "70.00",
+    "currency": "GBP"
+   },
+   "condition": "Used",
+   "conditionId": "3000"
+  }
  ]
 }

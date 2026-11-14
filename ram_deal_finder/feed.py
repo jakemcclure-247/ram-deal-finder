@@ -12,7 +12,9 @@ from pathlib import Path
 from . import config
 from .ebay import PAGE_SIZE
 from .parse import WARNING_ORDER, parse_computer, sort_warnings
-from .pricing import FORMS, GENERATIONS, RESALE_FACTOR, estimate, lookup, module_sample, reference_prices
+from .parts import computer_parts, drive_sample, model_query, model_sample
+from .pricing import (DRIVE_KINDS, FORMS, GENERATIONS, RESALE_FACTOR, drive_prices, estimate, lookup, model_price,
+                      module_sample, part_value, reference_prices)
 
 # The page drops any link or picture that doesn't start with one of these.
 LINK_STARTS = ("https://www.ebay.co.uk/", "https://ebay.us/", "https://www.ebay.com/")
@@ -21,8 +23,12 @@ CATEGORIES = ("laptop", "desktop", "server")
 
 DEAL_KEYS = ["id", "title", "url", "image", "category", "condition", "location", "listedAt", "price", "shipping",
              "totalCost", "ramGb", "ramGeneration", "ramForm", "ramConfidence", "estRamValue", "estMargin",
-             "warnings", "firstSeenAt", "lastSeenAt"]
-FEED_KEYS = ["generatedAt", "marketplace", "currency", "affiliateLinks", "stats", "referencePrices", "deals"]
+             "warnings", "parts", "estPartsValue", "estTotalValue", "estTotalMargin", "firstSeenAt", "lastSeenAt"]
+# "deals" pay on their memory alone, which is what the page shows. "partsDeals" only pay once the other
+# parts are counted. "partPrices" are the prices those parts were valued at.
+FEED_KEYS = ["generatedAt", "marketplace", "currency", "affiliateLinks", "stats", "referencePrices", "deals",
+             "partPrices", "partsDeals"]
+PART_KINDS = (*DRIVE_KINDS, "gpu", "cpu")
 STATS_KEYS = ["listingsScanned", "memoryListingsSampled", "newDealsThisRun"]
 REFERENCE_KEYS = ["generation", "form", "pricePerGb", "medianPerGb", "sampleSize"]
 
@@ -109,7 +115,46 @@ def price_band(refs: list[dict], search: dict) -> tuple[int, int]:
     return min(cap, max(config.MIN_PRICE, int(cap * config.FLOOR_FRACTION))), cap
 
 
-def _deal(item: dict, category: str, refs: list[dict], affiliate: bool) -> dict | None:
+def part_prices(drives: list[dict], models: dict[tuple[str, str], list[dict]]) -> dict:
+    """drives: item summaries of used drives; models: (kind, model) -> the listings its lookup returned."""
+    samples = []
+    for item in unique(drives):
+        title, price = _text(item.get("title")), _gbp(item.get("price"))
+        sample = drive_sample(title) if title and price and not has_variations(item) else None
+        if sample:
+            samples.append((*sample, price))
+    priced = []
+    for (kind, model), items in models.items():
+        prices = [_gbp(i.get("price")) for i in unique(items)
+                  if _text(i.get("title")) and not has_variations(i) and model_sample(i["title"], kind, model)]
+        found = model_price(kind, model, [p for p in prices if p])
+        if found:
+            priced.append(found)
+    return {"drives": drive_prices(samples), "models": sorted(priced, key=lambda m: (m["kind"], m["model"]))}
+
+
+def wanted_models(computers: list[tuple[str, dict]], refs: list[dict], drive_refs: list[dict], limit: int,
+                  near: float) -> list[tuple[str, str]]:
+    """The graphics card and processor models worth a lookup: those in the listings that fall least
+    short of paying for themselves on memory and drives, nearest first."""
+    short = []
+    for category, item in computers:
+        listing = _listing(item, category, refs, False, {"drives": drive_refs, "models": []}) if isinstance(item, dict) else None
+        if listing and -listing["estTotalMargin"] <= near:
+            models = [(p.kind, p.key) for p in computer_parts(listing["title"], category) if p.kind in ("gpu", "cpu")]
+            if models:
+                short.append((-listing["estTotalMargin"], listing["id"], models))
+    wanted: list[tuple[str, str]] = []
+    for _, _, models in sorted(short):
+        wanted += [m for m in models if m not in wanted]
+    return wanted[:limit]
+
+
+NO_PARTS = {"drives": [], "models": []}
+
+
+def _listing(item: dict, category: str, refs: list[dict], affiliate: bool, prices: dict = NO_PARTS) -> dict | None:
+    """A computer with its memory and parts valued, whatever the margin; None if it can't be valued."""
     title, price, url = _text(item.get("title")), _gbp(item.get("price")), _url(item, affiliate)
     if not title or price is None or price <= 0 or not url or has_variations(item):
         return None
@@ -125,8 +170,12 @@ def _deal(item: dict, category: str, refs: list[dict], affiliate: bool) -> dict 
     shipping = min(known) if known else None
     total = round(price + (shipping or 0), 2)
     value, margin = estimate(memory.ram_gb, per_gb, total)
-    if margin <= 0:
-        return None
+    parts = []
+    for part in computer_parts(title, category):
+        worth = part_value(part.kind, part.key, part.count, part.gb, prices["drives"], prices["models"])
+        if worth:
+            parts.append({"kind": part.kind, "label": part.label, "count": part.count, "estValue": _tidy(worth)})
+    parts_value = round(sum(p["estValue"] for p in parts), 2)
     warnings = list(memory.warnings)
     if approximate:
         warnings.append("ram-price-approximate")
@@ -153,34 +202,42 @@ def _deal(item: dict, category: str, refs: list[dict], affiliate: bool) -> dict 
         "estRamValue": _tidy(value),
         "estMargin": _tidy(margin),
         "warnings": sort_warnings(warnings),
+        "parts": parts,
+        "estPartsValue": _tidy(parts_value),
+        "estTotalValue": _tidy(round(value + parts_value, 2)),
+        "estTotalMargin": _tidy(round(value + parts_value - total, 2)),
     }
 
 
 def build_feed(computers: list[tuple[str, dict]], memory: list[dict], previous: dict | None,
-               now: datetime, affiliate: bool = False) -> dict:
-    """computers: (category, item summary) pairs; memory: item summaries of memory listings.
+               now: datetime, affiliate: bool = False, drives: list[dict] | None = None,
+               models: dict[tuple[str, str], list[dict]] | None = None) -> dict:
+    """computers: (category, item summary) pairs; memory: item summaries of memory listings; drives and
+    models: the listings the other parts are priced from (see part_prices).
     A deal eBay no longer returns is dropped; one seen before keeps its firstSeenAt."""
     memory = unique(memory)
     refs = reference_prices(memory_samples(memory))
+    prices = part_prices(drives or [], models or {})
     stamp = iso(now)
     first_seen = {}
-    for old in (previous or {}).get("deals") or []:
+    for old in [*((previous or {}).get("deals") or []), *((previous or {}).get("partsDeals") or [])]:
         if isinstance(old, dict) and isinstance(old.get("id"), str) and _text(old.get("firstSeenAt")):
             first_seen[old["id"]] = old["firstSeenAt"]
-    deals, seen = [], set()
+    deals, parts_deals, seen = [], [], set()
     for category, item in computers:
         item_id = _text(item.get("itemId")) if isinstance(item, dict) else None
         if not item_id or item_id in seen:
             continue
         seen.add(item_id)
-        deal = _deal(item, category, refs, affiliate)
-        if deal:
+        deal = _listing(item, category, refs, affiliate, prices)
+        if deal and (deal["estMargin"] > 0 or deal["estTotalMargin"] > 0):
             deal["firstSeenAt"] = first_seen.get(item_id, stamp)
             deal["lastSeenAt"] = stamp
-            deals.append(deal)
-    deals.sort(key=lambda d: d["id"])
-    deals.sort(key=lambda d: d["listedAt"] or "", reverse=True)
-    deals.sort(key=lambda d: d["estMargin"], reverse=True)
+            (deals if deal["estMargin"] > 0 else parts_deals).append(deal)
+    for found, by in ((deals, "estMargin"), (parts_deals, "estTotalMargin")):
+        found.sort(key=lambda d: d["id"])
+        found.sort(key=lambda d: d["listedAt"] or "", reverse=True)
+        found.sort(key=lambda d: d[by], reverse=True)
     feed = {
         "generatedAt": stamp,
         "marketplace": "EBAY_GB",
@@ -193,6 +250,8 @@ def build_feed(computers: list[tuple[str, dict]], memory: list[dict], previous: 
         },
         "referencePrices": refs,
         "deals": deals,
+        "partPrices": prices,
+        "partsDeals": parts_deals,
     }
     validate_feed(feed)
     return feed
@@ -222,8 +281,16 @@ def validate_feed(feed: dict) -> None:
         check(ref["generation"] in GENERATIONS and ref["form"] in FORMS, "reference price kind")
         check(_number(ref["pricePerGb"]) and _number(ref["medianPerGb"]) and ref["pricePerGb"] > 0, "reference price")
         check(isinstance(ref["sampleSize"], int) and ref["sampleSize"] > 0, "sampleSize")
+    check(list(feed["partPrices"]) == ["drives", "models"], "partPrices keys")
+    for ref in feed["partPrices"]["drives"]:
+        check(list(ref) == ["kind", "pricePerGb", "medianPerGb", "sampleSize"] and ref["kind"] in DRIVE_KINDS, "drive price")
+        check(_number(ref["pricePerGb"]) and ref["pricePerGb"] > 0 and isinstance(ref["sampleSize"], int), "drive price")
+    for ref in feed["partPrices"]["models"]:
+        check(list(ref) == ["kind", "model", "price", "median", "sampleSize"] and ref["kind"] in ("gpu", "cpu"), "model price")
+        check(_number(ref["price"]) and ref["price"] > 0 and isinstance(ref["sampleSize"], int), "model price")
     margins = [d.get("estMargin") for d in feed["deals"]]
-    for deal in feed["deals"]:
+    totals = [d.get("estTotalMargin") for d in feed["partsDeals"]]
+    for deal in [*feed["deals"], *feed["partsDeals"]]:
         check(list(deal) == DEAL_KEYS, f"deal keys of {deal.get('id')}")
         check(all(isinstance(deal[k], str) and deal[k] for k in ("id", "title")), "deal id or title")
         check(deal["url"].startswith(LINK_STARTS), f"deal url {deal['url']}")
@@ -236,12 +303,23 @@ def validate_feed(feed: dict) -> None:
         check(isinstance(deal["ramGb"], int) and deal["ramGb"] > 0, "ramGb")
         check(deal["ramGeneration"] in (*GENERATIONS, None) and deal["ramForm"] in FORMS, "memory kind")
         check(deal["ramConfidence"] in ("stated", "inferred"), "ramConfidence")
-        check(_number(deal["estMargin"]) and deal["estMargin"] > 0, "estMargin")
+        check(_number(deal["estMargin"]), "estMargin")
         check(abs(deal["estRamValue"] - deal["totalCost"] - deal["estMargin"]) < 0.011, "margin arithmetic")
         check(all(w in WARNING_ORDER for w in deal["warnings"]), "warning codes")
+        for part in deal["parts"]:
+            check(list(part) == ["kind", "label", "count", "estValue"] and part["kind"] in PART_KINDS, "part keys")
+            check(isinstance(part["label"], str) and isinstance(part["count"], int) and part["count"] > 0, "part")
+            check(_number(part["estValue"]) and part["estValue"] > 0, "part value")
+        check(abs(sum(p["estValue"] for p in deal["parts"]) - deal["estPartsValue"]) < 0.011, "parts arithmetic")
+        check(abs(deal["estRamValue"] + deal["estPartsValue"] - deal["estTotalValue"]) < 0.011, "total value arithmetic")
+        check(abs(deal["estTotalValue"] - deal["totalCost"] - deal["estTotalMargin"]) < 0.011, "total margin arithmetic")
         check(_time(deal["firstSeenAt"]) and _time(deal["lastSeenAt"]), "seen times")
+    check(all(d["estMargin"] > 0 for d in feed["deals"]), "a deal must pay on its memory alone")
+    check(all(d["estMargin"] <= 0 < d["estTotalMargin"] for d in feed["partsDeals"]), "a parts deal pays only with its parts")
     check(margins == sorted(margins, reverse=True), "deals not sorted best first")
-    check(len({d["id"] for d in feed["deals"]}) == len(feed["deals"]), "duplicate deals")
+    check(totals == sorted(totals, reverse=True), "parts deals not sorted best first")
+    ids = [d["id"] for d in [*feed["deals"], *feed["partsDeals"]]]
+    check(len(set(ids)) == len(ids), "duplicate deals")
 
 
 def load_previous(path) -> dict | None:
@@ -296,9 +374,24 @@ def run(client, out_path, now: datetime | None = None, log=print) -> dict:
                 break
         log(f"{search['category']:9} {search['q']!r} £{low}-{high}: {len(items)} listings")
         computers += [(search["category"], item) for item in items]
+    drives: list[dict] = []
+    for search in config.DRIVES:
+        items = client.search(search["q"], search["category_id"], config.MEMORY_FILTER)
+        log(f"drives    {search['q']!r}: {len(items)} listings")
+        drives += items
+    drive_refs = part_prices(drives, {})["drives"]
+    for ref in drive_refs:
+        log(f"reference {ref['kind']}: £{ref['pricePerGb']}/GB from {ref['sampleSize']} listings")
+    models: dict[tuple[str, str], list[dict]] = {}
+    for kind, model in wanted_models(computers, refs, drive_refs, config.MAX_MODEL_LOOKUPS, config.MODEL_NEAR):
+        models[(kind, model)] = client.search(model_query(kind, model), config.MODEL_CATS[kind], config.MEMORY_FILTER)
+        log(f"{kind:9} {model!r}: {len(models[(kind, model)])} listings")
     feed = build_feed(computers, memory, load_previous(out_path), now or datetime.now(timezone.utc),
-                      affiliate=bool(client.campaign_id))
+                      affiliate=bool(client.campaign_id), drives=drives, models=models)
+    for ref in feed["partPrices"]["models"]:
+        log(f"reference {ref['kind']} {ref['model']}: £{ref['price']} from {ref['sampleSize']} listings")
     write_feed(feed, out_path)
-    log(f"{len(feed['deals'])} deals ({feed['stats']['newDealsThisRun']} new) from "
+    log(f"{len(feed['deals'])} deals ({feed['stats']['newDealsThisRun']} new) and {len(feed['partsDeals'])} more counting "
+        f"other parts, from "
         f"{feed['stats']['listingsScanned']} listings, {client.calls} API calls -> {out_path}")
     return feed

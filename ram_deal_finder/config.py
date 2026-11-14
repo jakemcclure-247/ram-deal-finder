@@ -1,6 +1,6 @@
 """What to search for. One API call per page of results: a run makes 1 (token) + len(MEMORY) + between
-len(COMPUTERS) and the sum of their "pages" calls. As it stands that is 31 to 41 a run, so at most about
-500 a day on the two-hourly schedule."""
+len(COMPUTERS) and the sum of their "pages" calls. Then 5 drive searches and up to MAX_MODEL_LOOKUPS model lookups: 36 to 58 a run, so at most about
+700 a day on the two-hourly schedule."""
 from __future__ import annotations
 
 # eBay UK category ids (checked on a real run, 14 November 2026: every search returned listings).
@@ -79,4 +79,23 @@ COMPUTER_SORT = "price"   # cheapest first (price plus postage)
 FLOOR_FRACTION = 0.05
 MIN_PRICE = 10
 
-MAX_CALLS_PER_RUN = 60
+MAX_CALLS_PER_RUN = 75
+
+# --- Other parts ---
+# Used drives, to price drives per GB by kind. Each listing is filed by what its own title says.
+SSD_CAT = "175669"   # Solid State Drives
+HDD_CAT = "56083"    # Internal Hard Disk Drives
+GPU_CAT = "27386"    # Graphics/Video Cards
+CPU_CAT = "164"      # CPUs/Processors
+DRIVES = [
+    {"q": "SATA SSD 2.5", "category_id": SSD_CAT},
+    {"q": "NVMe SSD M.2", "category_id": SSD_CAT},
+    {"q": "SATA hard drive 3.5", "category_id": HDD_CAT},
+    {"q": "2.5 SATA hard drive laptop", "category_id": HDD_CAT},
+    {"q": "SAS hard drive", "category_id": None},
+]
+MODEL_CATS = {"gpu": GPU_CAT, "cpu": CPU_CAT}
+# Graphics cards and processors are priced one model per call, so only for the listings nearest to
+# paying for themselves: at most this many models a run, and none for a listing further off than this.
+MAX_MODEL_LOOKUPS = 12
+MODEL_NEAR = 600

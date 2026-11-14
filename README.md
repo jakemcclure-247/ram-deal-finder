@@ -47,6 +47,40 @@ Where the title leaves doubt, the estimate takes the cheaper reading and the dea
 | `untested-or-faulty` | Sold as spares, repairs, untested or not working |
 | `postage-unknown` | eBay gave no postage cost (often collection only) |
 
+## Other parts
+
+Memory is not the only thing that sells. Each listing's title is also read for
+(`ram_deal_finder/parts.py`):
+
+- **Drives**: SSDs, NVMe drives and hard drives that the title gives both a size and a kind for
+  ("2x 480GB SSD", "8x 1.2TB SAS"). Priced per GB by kind from used drive listings, lower quartile, as
+  for memory. "No HDD" and the like remove them.
+- **Graphics cards**, desktops only, by model ("RTX 3060 Ti").
+- **Processors**, desktops and servers only, by model and count ("2x E5-2680 v4"). Laptop chips and
+  NUCs are soldered, so they count for nothing.
+
+A model costs one API call to price, so only the listings closest to paying for themselves get their
+models looked up: at most 12 models a run. Anything without a price (fewer than 5 clean listings, or not
+looked up) adds nothing, so the parts value is a floor. The same 0.8 factor applies.
+
+The feed carries this as extra fields, leaving the memory figures as they were:
+
+| Field | Meaning |
+| --- | --- |
+| `parts` | On each deal: `kind` (nvme, ssd, hdd, sas, gpu, cpu), `label`, `count`, `estValue` |
+| `estPartsValue` | The sum of those |
+| `estTotalValue`, `estTotalMargin` | Memory plus parts, and that less the total cost |
+| `partPrices` | The prices used: `drives` per GB by kind, `models` by graphics card or processor |
+| `partsDeals` | Listings that lose on memory alone (`estMargin` at or below zero) but pay once the parts are counted, best `estTotalMargin` first |
+
+`deals` is unchanged: only listings that pay on their memory alone, sorted by `estMargin`. The page at
+jakem.uk/ram-deals reads `deals` and ignores the rest until it is changed to show them.
+
+The searches are still built around memory, so a computer whose value is mostly its graphics card is
+only found if it also turns up in a memory or job-lot search.
+
+## What is left out
+
 Left out altogether: no memory fitted, memory that is certainly soldered (LPDDR, Apple silicon, MacBook
 Air, Surface), pick-your-spec listings (anything eBay marks as having variations, because the price shown
 is the cheapest option's), a bare "32GB" on a Celeron or similar, which is storage, and a bare size in a
@@ -100,8 +134,9 @@ the previous feed stays. A push only runs the tests.
 Add the repository secrets `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET` (Settings → Secrets and variables →
 Actions), and `EPN_CAMPAIGN_ID` if you have one.
 
-**API calls:** 31 to 41 a run (1 token, 9 memory searches, 21 computer searches, some of which take a
-second page), so at most about 500 a day. The client stops itself at 60 calls in one run. eBay allows 1,000 application tokens a day; the Browse API's own
+**API calls:** 36 to 58 a run (1 token, 9 memory searches, 21 computer searches, some of which take a
+second page, 5 drive searches and up to 12 model lookups), so at most about 700 a day. The client stops
+itself at 75 calls in one run. eBay allows 1,000 application tokens a day; the Browse API's own
 daily allowance is shown under Application Keys in the developer account.
 
 ## eBay's terms that shape this
@@ -127,6 +162,7 @@ requirements, as read on 12 November 2026:
 ```
 ram_deal_finder/
   parse.py     titles -> memory size, generation, form, warnings
+  parts.py     titles -> drives, graphics card, processors
   pricing.py   reference prices per GB, value and margin
   ebay.py      Browse API client (token, search) and the fixture stand-in
   feed.py      builds, checks and writes the feed; the run itself

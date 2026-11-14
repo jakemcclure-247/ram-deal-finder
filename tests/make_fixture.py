@@ -101,6 +101,35 @@ def build() -> dict:
         SERVER_128: [
             computer(800000000021, "Dell PowerEdge R720 2x E5-2650 v2 128GB DDR3 8x 600GB SAS", 150, None, "Crewe", "06:20"),
         ],
+        # Other parts. 5 usable SSDs, per GB: 0.05 0.05 0.06 0.0625 0.07 -> lower quartile 0.05, median 0.06
+        f"{config.SSD_CAT}|SATA SSD 2.5": [
+            module("Crucial BX500 240GB SATA SSD 2.5", 12),
+            module("Samsung 860 EVO 500GB 2.5 SATA SSD", 25),
+            module("Kingston A400 480GB SATA SSD", 28.80),
+            module("SanDisk 256GB SSD 2.5 inch SATA", 16),
+            module("WD Blue 1TB SATA SSD 2.5", 70),
+            module("Job lot 10x 120GB SATA SSD", 30),
+            module("Seagate 2TB external USB hard drive", 35),
+        ],
+        # 5 usable: 10 12 12 14 20 -> lower quartile 12, median 12
+        f"{config.CPU_CAT}|I5-6500": [
+            module("Intel Core i5-6500 3.2GHz SR2L6 CPU", 10),
+            module("Intel i5-6500 quad core processor LGA1151", 12),
+            module("Intel Core i5-6500 SR2L6", 12),
+            module("Intel Core i5 6500 3.20GHz CPU processor", 14),
+            module("Intel i5-6500 CPU tested", 20),
+            module("Intel Core i5-6500 with motherboard and 8GB RAM", 45),
+            module("Intel Core i5-6600 3.3GHz CPU", 15),
+        ],
+        # 5 usable: 36 40 40 44 50 -> lower quartile 40, median 40
+        f"{config.CPU_CAT}|Xeon E5-2680 V4": [
+            module("Intel Xeon E5-2680 v4 2.40GHz 14 core CPU SR2N7", 36),
+            module("Intel Xeon E5-2680V4 SR2N7 processor", 40),
+            module("Xeon E5-2680 v4 14C/28T CPU", 40),
+            module("Intel Xeon E5-2680 v4 LGA2011-3", 44),
+            module("Intel Xeon E5-2680 v4 2.4GHz processor tested", 50),
+            module("2x Intel Xeon E5-2680 v4 matched pair", 70),
+        ],
     }
 
 

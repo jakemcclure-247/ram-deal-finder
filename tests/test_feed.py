@@ -36,20 +36,44 @@ EXPECTED = {
          "url": "https://www.ebay.co.uk/itm/800000000013", "image": None, "category": "desktop", "condition": "Used",
          "location": "Reading", "listedAt": "2026-11-12T07:45:00.000Z", "price": 120, "shipping": 8, "totalCost": 128,
          "ramGb": 64, "ramGeneration": "DDR4", "ramForm": "SODIMM", "ramConfidence": "stated", "estRamValue": 219.14,
-         "estMargin": 91.14, "warnings": ["ram-type-assumed"], **SEEN},
+         "estMargin": 91.14, "warnings": ["ram-type-assumed"],
+         # an NVMe drive, but no NVMe price; the i5-8500T was looked up and nothing came back
+         "parts": [], "estPartsValue": 0, "estTotalValue": 219.14, "estTotalMargin": 91.14, **SEEN},
         # 0.8 x 32 x 4.28 = 109.57, less 55 + 6.99
         {"id": "v1|800000000001|0", "title": "Dell Latitude 5490 i5-8350U 32GB RAM 256GB SSD - cracked screen, spares or repairs",
          "url": "https://www.ebay.co.uk/itm/800000000001", "image": None, "category": "laptop",
          "condition": "For parts or not working", "location": "Leeds", "listedAt": "2026-11-12T08:14:00.000Z", "price": 55,
          "shipping": 6.99, "totalCost": 61.99, "ramGb": 32, "ramGeneration": "DDR4", "ramForm": "SODIMM",
          "ramConfidence": "stated", "estRamValue": 109.57, "estMargin": 47.58,
-         "warnings": ["ram-type-assumed", "untested-or-faulty"], **SEEN},
+         "warnings": ["ram-type-assumed", "untested-or-faulty"],
+         # SSD: 0.8 x 256 x 0.05 = 10.24; 109.57 + 10.24 = 119.81, less 61.99
+         "parts": [{"kind": "ssd", "label": "256GB SSD", "count": 1, "estValue": 10.24}],
+         "estPartsValue": 10.24, "estTotalValue": 119.81, "estTotalMargin": 57.82, **SEEN},
         # 0.8 x 32 x 3.78 = 96.77, less 60 with no postage given
         {"id": "v1|800000000011|0", "title": "Dell OptiPlex 7050 SFF i5-6500 32GB DDR4 500GB HDD",
          "url": "https://www.ebay.co.uk/itm/800000000011", "image": None, "category": "desktop", "condition": "Used",
          "location": "Manchester", "listedAt": "2026-11-12T08:01:00.000Z", "price": 60, "shipping": None, "totalCost": 60,
          "ramGb": 32, "ramGeneration": "DDR4", "ramForm": "DIMM", "ramConfidence": "stated", "estRamValue": 96.77,
-         "estMargin": 36.77, "warnings": ["postage-unknown"], **SEEN},
+         "estMargin": 36.77, "warnings": ["postage-unknown"],
+         # processor: 0.8 x 12 = 9.60 (no hard drive price, so the 500GB HDD counts for nothing)
+         "parts": [{"kind": "cpu", "label": "I5-6500", "count": 1, "estValue": 9.6}],
+         "estPartsValue": 9.6, "estTotalValue": 106.37, "estTotalMargin": 46.37, **SEEN},
+    ],
+    "partPrices": {
+        "drives": [{"kind": "ssd", "pricePerGb": 0.05, "medianPerGb": 0.06, "sampleSize": 5}],
+        "models": [{"kind": "cpu", "model": "E5-2680 V4", "price": 40, "median": 40, "sampleSize": 5},
+                   {"kind": "cpu", "model": "I5-6500", "price": 12, "median": 12, "sampleSize": 5}],
+    },
+    "partsDeals": [
+        # memory alone: 0.8 x 64 x 3.78 (no RDIMM price, so the cheapest DDR4) = 193.54, less 230 + 20 = -56.46
+        # two processors: 0.8 x 2 x 40 = 64; 193.54 + 64 = 257.54, less 250
+        {"id": "v1|800000000022|0", "title": "HP ProLiant DL380 Gen9 2x E5-2680 v4 64GB DDR4 no HDD",
+         "url": "https://www.ebay.co.uk/itm/800000000022", "image": None, "category": "server", "condition": "Used",
+         "location": "Slough", "listedAt": "2026-11-12T06:30:00.000Z", "price": 230, "shipping": 20, "totalCost": 250,
+         "ramGb": 64, "ramGeneration": "DDR4", "ramForm": "RDIMM", "ramConfidence": "stated", "estRamValue": 193.54,
+         "estMargin": -56.46, "warnings": ["ram-price-approximate"],
+         "parts": [{"kind": "cpu", "label": "2 x E5-2680 V4", "count": 2, "estValue": 64}],
+         "estPartsValue": 64, "estTotalValue": 257.54, "estTotalMargin": 7.54, **SEEN},
     ],
 }
 
@@ -71,8 +95,8 @@ def test_fixture_run_writes_the_expected_feed(fixture_file, tmp_path):
     feed = run(client, out, NOW, log=quiet)
     assert feed == EXPECTED
     assert json.loads(out.read_text(encoding="utf-8")) == EXPECTED
-    # every search fits on one page, so one call each
-    assert client.calls == len(config.MEMORY) + len(config.COMPUTERS) == 30
+    # every search fits on one page, so one call each; then 5 drive searches and 5 model lookups
+    assert client.calls == len(config.MEMORY) + len(config.COMPUTERS) + len(config.DRIVES) + 5 == 40
 
 
 def test_a_full_page_is_followed_by_the_next_one(tmp_path):
@@ -84,7 +108,7 @@ def test_a_full_page_is_followed_by_the_next_one(tmp_path):
     path.write_text(json.dumps(listings), encoding="utf-8")
     client = FixtureClient(path)
     feed = run(client, tmp_path / "deals.json", NOW, log=quiet)
-    assert client.calls == 31                                    # one more, for the second page
+    assert client.calls == 41                                    # one more, for the second page
     assert feed["stats"]["listingsScanned"] == 211
     assert [d["id"] for d in feed["deals"]] == [d["id"] for d in EXPECTED["deals"]]   # the Latitude is on page two
 
