@@ -239,7 +239,7 @@
    "conditionId": "3000"
   }
  ],
- "177|32GB": [
+ "177|(32GB RAM, 32GB DDR3, 32GB DDR4, 32GB memory)": [
   {
    "itemId": "v1|800000000001|0",
    "legacyItemId": "800000000001",
@@ -371,7 +371,7 @@
    ]
   }
  ],
- "179|32GB": [
+ "179|(32GB RAM, 32GB DDR3, 32GB DDR4, 32GB memory)": [
   {
    "itemId": "v1|800000000011|0",
    "legacyItemId": "800000000011",
@@ -442,7 +442,7 @@
    ]
   }
  ],
- "179|64GB": [
+ "179|(64GB RAM, 64GB DDR3, 64GB DDR4, 64GB memory)": [
   {
    "itemId": "v1|800000000013|0",
    "legacyItemId": "800000000013",
@@ -487,7 +487,7 @@
    "itemCreationDate": "2026-11-12T08:01:00.000Z"
   }
  ],
- "11211|64GB": [
+ "11211|(64GB RAM, 64GB DDR3, 64GB DDR4, 64GB memory)": [
   {
    "itemId": "v1|800000000022|0",
    "legacyItemId": "800000000022",
@@ -515,7 +515,7 @@
    ]
   }
  ],
- "11211|128GB": [
+ "11211|(128GB RAM, 128GB DDR3, 128GB DDR4, 128GB memory)": [
   {
    "itemId": "v1|800000000021|0",
    "legacyItemId": "800000000021",

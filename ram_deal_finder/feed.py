@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import config
+from .ebay import PAGE_SIZE
 from .parse import WARNING_ORDER, parse_computer, sort_warnings
 from .pricing import FORMS, GENERATIONS, RESALE_FACTOR, estimate, lookup, module_sample, reference_prices
 
@@ -93,9 +94,19 @@ def unique(items: list[dict]) -> list[dict]:
     return out
 
 
-def price_cap(refs: list[dict], ram_gb: int) -> int:
-    """The most a computer with this much memory could cost and still be a deal."""
-    return math.ceil(RESALE_FACTOR * ram_gb * max(r["pricePerGb"] for r in refs))
+def price_cap(refs: list[dict], ram_gb: int, ddr5: bool = False) -> int:
+    """The most a computer with this much memory could cost and still be a deal. DDR5 costs several
+    times more, so it only sets the cap for the searches that ask for it."""
+    wanted = [r["pricePerGb"] for r in refs if (r["generation"] == "DDR5") == ddr5]
+    return math.ceil(RESALE_FACTOR * ram_gb * max(wanted or [r["pricePerGb"] for r in refs]))
+
+
+def price_band(refs: list[dict], search: dict) -> tuple[int, int]:
+    """(lowest, highest) price a search asks eBay for."""
+    if "max_price" in search:
+        return config.MIN_PRICE, search["max_price"]
+    cap = price_cap(refs, search["ram_gb"], search.get("ddr5", False))
+    return min(cap, max(config.MIN_PRICE, int(cap * config.FLOOR_FRACTION))), cap
 
 
 def _deal(item: dict, category: str, refs: list[dict], affiliate: bool) -> dict | None:
@@ -274,9 +285,16 @@ def run(client, out_path, now: datetime | None = None, log=print) -> dict:
         log(f"reference {ref['generation']} {ref['form']}: £{ref['pricePerGb']}/GB from {ref['sampleSize']} listings")
     computers: list[tuple[str, dict]] = []
     for search in config.COMPUTERS:
-        filters = f"price:[1..{price_cap(refs, search['ram_gb'])}],priceCurrency:GBP,itemLocationCountry:GB"
-        items = client.search(search["q"], search["category_id"], filters, config.COMPUTER_SORT)
-        log(f"{search['category']:9} {search['q']!r}: {len(items)} listings")
+        low, high = price_band(refs, search)
+        filters = f"price:[{low}..{high}],priceCurrency:GBP,itemLocationCountry:GB"
+        items: list[dict] = []
+        for page in range(search.get("pages", 1)):
+            found = client.search(search["q"], search["category_id"], filters, search.get("sort", config.COMPUTER_SORT),
+                                  PAGE_SIZE, page * PAGE_SIZE)
+            items += found
+            if len(found) < PAGE_SIZE:  # that was the last page
+                break
+        log(f"{search['category']:9} {search['q']!r} £{low}-{high}: {len(items)} listings")
         computers += [(search["category"], item) for item in items]
     feed = build_feed(computers, memory, load_previous(out_path), now or datetime.now(timezone.utc),
                       affiliate=bool(client.campaign_id))

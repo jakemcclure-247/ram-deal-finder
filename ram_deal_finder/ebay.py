@@ -69,9 +69,11 @@ class EbayClient:
         return self._token
 
     def search(self, q: str, category_id: str | None = None, filters: str | None = None,
-               sort: str | None = None, limit: int = PAGE_SIZE) -> list[dict]:
+               sort: str | None = None, limit: int = PAGE_SIZE, offset: int = 0) -> list[dict]:
         """One page of item summaries. Buy It Now listings only: that is the API's default."""
         params = {"q": q, "limit": str(limit)}
+        if offset:
+            params["offset"] = str(offset)
         if category_id:
             params["category_ids"] = category_id
         if filters:
@@ -101,6 +103,6 @@ class FixtureClient:
         self.calls = 0
 
     def search(self, q: str, category_id: str | None = None, filters: str | None = None,
-               sort: str | None = None, limit: int = PAGE_SIZE) -> list[dict]:
+               sort: str | None = None, limit: int = PAGE_SIZE, offset: int = 0) -> list[dict]:
         self.calls += 1
-        return self._responses.get(f"{category_id or ''}|{q}", [])
+        return self._responses.get(f"{category_id or ''}|{q}", [])[offset:offset + limit]

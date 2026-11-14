@@ -11,7 +11,8 @@ import pytest
 
 from ram_deal_finder import config
 from ram_deal_finder.ebay import EbayClient, EbayError, FixtureClient
-from ram_deal_finder.feed import build_feed, load_previous, price_cap, run, validate_feed, write_feed
+from ram_deal_finder.feed import build_feed, load_previous, price_band, price_cap, run, validate_feed, write_feed
+from tests.make_fixture import LAPTOP_32
 from tests.make_fixture import build as fixture
 
 NOW = datetime(2026, 11, 12, 9, 0, tzinfo=timezone.utc)
@@ -70,7 +71,22 @@ def test_fixture_run_writes_the_expected_feed(fixture_file, tmp_path):
     feed = run(client, out, NOW, log=quiet)
     assert feed == EXPECTED
     assert json.loads(out.read_text(encoding="utf-8")) == EXPECTED
-    assert client.calls == len(config.MEMORY) + len(config.COMPUTERS) == 18
+    # every search fits on one page, so one call each
+    assert client.calls == len(config.MEMORY) + len(config.COMPUTERS) == 30
+
+
+def test_a_full_page_is_followed_by_the_next_one(tmp_path):
+    listings = fixture()
+    full = [laptop(itemId=f"v1|{600000000000 + n}|0", legacyItemId=str(600000000000 + n), title="Acer Aspire 4GB RAM",
+                   price={"value": "500.00", "currency": "GBP"}) for n in range(200)]
+    listings[LAPTOP_32] = full + listings[LAPTOP_32]
+    path = tmp_path / "ebay.json"
+    path.write_text(json.dumps(listings), encoding="utf-8")
+    client = FixtureClient(path)
+    feed = run(client, tmp_path / "deals.json", NOW, log=quiet)
+    assert client.calls == 31                                    # one more, for the second page
+    assert feed["stats"]["listingsScanned"] == 211
+    assert [d["id"] for d in feed["deals"]] == [d["id"] for d in EXPECTED["deals"]]   # the Latitude is on page two
 
 
 def test_committed_fixture_matches_its_generator():
@@ -82,7 +98,7 @@ def test_second_run_keeps_first_seen_and_drops_what_has_gone(fixture_file, tmp_p
     out = tmp_path / "deals.json"
     run(FixtureClient(fixture_file), out, NOW, log=quiet)
     listings = fixture()
-    listings["177|32GB"] = listings["177|32GB"][1:]   # the Latitude has sold
+    listings[LAPTOP_32] = listings[LAPTOP_32][1:]   # the Latitude has sold
     fixture_file.write_text(json.dumps(listings), encoding="utf-8")
     feed = run(FixtureClient(fixture_file), out, LATER, log=quiet)
     assert [d["id"] for d in feed["deals"]] == ["v1|800000000013|0", "v1|800000000011|0"]
@@ -189,6 +205,25 @@ def test_unknown_memory_type_is_priced_at_the_cheapest_and_says_so():
 def test_price_cap_is_the_most_the_memory_could_be_worth():
     assert price_cap(EXPECTED["referencePrices"], 32) == 110   # 0.8 x 32 x 4.28 = 109.57, rounded up
     assert price_cap(EXPECTED["referencePrices"], 512) == 1754  # 1753.09
+    refs = EXPECTED["referencePrices"] + [{"generation": "DDR5", "form": "SODIMM", "pricePerGb": 9.0}]
+    assert price_cap(refs, 32) == 110                # DDR5 doesn't lift the cap of an ordinary search
+    assert price_cap(refs, 32, ddr5=True) == 231     # 0.8 x 32 x 9 = 230.4
+    assert price_cap(EXPECTED["referencePrices"], 32, ddr5=True) == 110   # no DDR5 price: the best there is
+
+
+def test_price_band_of_each_kind_of_search():
+    refs = EXPECTED["referencePrices"]
+    assert price_band(refs, {"ram_gb": 512}) == (87, 1754)      # from a twentieth of the cap: 87.7
+    assert price_band(refs, {"ram_gb": 32}) == (10, 110)        # never from under £10
+    assert price_band(refs, {"max_price": 5000}) == (10, 5000)  # job lots: no size to cap by
+
+
+def test_a_job_lot_is_valued_on_all_its_computers():
+    lot = laptop(title="Job Lot x 6 HP ProBook 640 G4 i5-8250U 8GB RAM no SSD", price={"value": "150.00", "currency": "GBP"})
+    deal = one_deal(lot)[0]
+    # 6 x 8GB = 48GB: 0.8 x 48 x 4.28 = 164.35, less 150
+    assert (deal["ramGb"], deal["estRamValue"], deal["estMargin"]) == (48, 164.35, 14.35)
+    assert deal["ramConfidence"] == "inferred" and deal["warnings"] == ["ram-size-inferred", "ram-type-assumed"]
 
 
 def test_load_previous_survives_rubbish(tmp_path):

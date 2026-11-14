@@ -27,7 +27,7 @@ _SIZE = re.compile(r"(?:(?<!\d)(\d{1,2})\s*[x×*]\s*)?(?<![\d.,])(\d{1,4})\s*gb(
 
 _SKIP_BEFORE = re.compile(r"(?:up\s*to|max(?:imum)?|supports?|upgrad\w+\s+to|expand\w+\s+to)\s*$")
 _RAM_AFTER = re.compile(r"^[\s)\-]*(?:of\s+)?(?:ddr|ram\b|memory|mem\b|so-?dimm|dimm|l?rdimm|ecc\b|pc[345])")
-_STORAGE_AFTER = re.compile(r"^[\s)\-]*(?:ssd|hdd|nvme|emmc|m\.?\s?2\b|sata|sas\b|sshd|hard|storage|flash|disk|drive|pcie|ufs|rom\b)")
+_STORAGE_AFTER = re.compile(r"^[\s)\-]*(?:ssd|hdd|nvme|emmc|m\.?\s?2\b|sata|sas\b|sshd|hard|storage|flash|disk|drive|pcie|ufs|rom\b|(?:micro\s?)?sd\b|usb\b|card\b)")
 # A title that names a drive but has no size we could pin on it: a bare size is probably that drive's.
 _STORAGE_WORD = re.compile(r"\b(?:ssd|hdd|nvme|emmc|sata|sas|sshd|hard\s*drive|m\.?\s?2)\b")
 _TB_SIZE = re.compile(r"\d\s*tb\b")
@@ -47,7 +47,26 @@ _NO_RAM = re.compile(
     r"|\b(?:ram|memory)\s+(?:not\s+included|removed|missing)\b"
     r"|\b0\s*gb\s+ram\b"
 )
-_NOT_A_COMPUTER = re.compile(r"\b(?:box\s+only|empty\s+box|bare\s?bones?|chassis\s+only|case\s+only|no\s+motherboard)\b")
+_NOT_A_COMPUTER = re.compile(
+    r"\b(?:box\s+only|empty\s+box|bare\s?bones?|chassis\s+only|case\s+only|no\s+motherboard|upgrade\s+from"
+    r"|memory\s+modules?|motherboards?\s+(?:only|with))\b"
+)
+# "8/16/32GB RAM": sizes on offer, written with one "GB" between them.
+_BARE_OPTIONS = re.compile(r"(?<![\d.])(\d{1,3})\s*/\s*(\d{1,3})\s*(?:/\s*\d{1,3}\s*)*gb")
+# Several computers sold as one listing.
+_LOT = re.compile(r"\bjob\s?lots?\b|\blot\s+of\b|\bbundle\s+of\b|\bbulk\s+(?:deal|lot|sale)\b|\bpallet\b")
+_NOT_A_COUNT = r"(?!\s*(?:gb|tb|mb|th\b|st\b|nd\b|rd\b|gen\b|in\b|inch|core|bay|[.\"”/-]\s*\d))"
+_LOT_COUNTS = [
+    re.compile(r"(?:job\s?lots?|\blot|\bbundle|bulk\s+deal)\s*(?:of\s*)?(?:around\s*|approx\s*)?\(?\s*x?\s*(\d{1,3})(?![\d])"
+               + _NOT_A_COUNT),
+    re.compile(r"^\W*x?\s*(\d{1,3})\s*x?\s*(?:job\s?lot|laptops|pcs|computers|desktops|servers)\b"),
+    re.compile(r"^\W*(\d{1,3})\s*x\b(?!\s*\d)"),                       # "10x Lenovo ThinkPad ..."
+    re.compile(r"(?<![\dx])\bx\s(\d{1,3})\b" + _NOT_A_COUNT),            # "x 15"
+    # "x3", but not a model number: ThinkPad X13, X260, Envy x2
+    re.compile(r"(?<![\dx])(?<!thinkpad )(?<!lenovo )(?<!envy )(?<!spectre )(?<!pavilion )\bx(\d{1,2})\b" + _NOT_A_COUNT),
+    re.compile(r"\b(\d{1,3})\s*(?:in\s+total|units\b|pcs\b|laptops\b|computers\b|desktops\b|servers\b|pieces\b)"),
+]
+MAX_LOT = 500
 _CHOOSE = re.compile(r"\b(?:choose|select|pick)\b|\bconfigur|\b(?:various|multiple)\s+spec")
 _SOLDERED_CERTAIN = re.compile(r"lpddr|\bmacbook\s+air\b|\bsurface\s+(?:pro|laptop|go|book|studio)\b")
 _APPLE = re.compile(r"\b(?:apple|mac|macbook|imac)\b")
@@ -78,6 +97,7 @@ class Memory:
     form: str  # SODIMM | DIMM | RDIMM
     confidence: str  # stated | inferred
     warnings: tuple[str, ...]
+    quantity: int = 1  # computers in the listing; ram_gb is the total across them
 
 
 def sort_warnings(codes) -> list[str]:
@@ -124,6 +144,8 @@ def _ram_size(low: str, category: str) -> tuple[int, str] | None:
     stated = [s["gb"] for s in sizes if s["kind"] == "ram"]
     if stated:
         gb = min(stated)
+        if gb > 16 and _LOW_END.search(low):  # "64GB RAM" on a Chromebook is its storage, mislabelled
+            return None
         return (gb, "stated") if 2 <= gb <= STATED_CAP[category] else None
     plain = [s["gb"] for s in sizes if s["kind"] == "plain" and s["gb"] in RAM_SIZES and s["gb"] <= INFERRED_CAP[category]]
     if not plain or _LOW_END.search(low):  # a bare "32GB" on a Celeron is its eMMC storage
@@ -142,7 +164,7 @@ def _explicit_generations(low: str) -> set[str]:
 def _intel(gen: int, low: str, category: str) -> tuple[str, ...]:
     if gen <= 5:
         return ("DDR3",)
-    if gen == 6 and category == "laptop" and re.search(r"\b(?:t460|t560|l460|l560|x260)\b", low):
+    if gen == 6 and category == "laptop" and re.search(r"\b(?:t460|t560|l460|l560)\b", low):
         return ("DDR3",)
     return ("DDR4",) if gen <= 11 else ("DDR4", "DDR5")
 
@@ -176,7 +198,7 @@ def _cpu_generations(low: str, category: str) -> tuple[str, ...]:
         return ("DDR4",) if m[1] in ("v5", "v6") else ("DDR3",)
     if re.search(r"\b[xel](?:5[56]|3[456])\d\d\b", low):
         return ("DDR3",)
-    m = re.search(r"\b(?:bronze|silver|gold|platinum)\s*\d(\d)\d\d", low)
+    m = re.search(r"\b(?:bronze|silver|gold|platinum)\s*[3-9](\d)\d\d\b", low)
     if m:
         return ("DDR4",) if m[1] in "123" else ("DDR5",)
     m = re.search(r"\bepyc\s*(\d)\d{3}", low)
@@ -223,18 +245,39 @@ def _form(low: str, category: str) -> str:
     return "RDIMM" if _RDIMM_DESKTOP.search(low) else "DIMM"
 
 
+def lot_quantity(low: str) -> int:
+    """How many computers a job lot holds; 1 when it isn't a lot or doesn't say."""
+    if not _LOT.search(low):
+        return 1
+    for pattern in _LOT_COUNTS:
+        m = pattern.search(low)
+        if m and 2 <= int(m[1]) <= MAX_LOT:
+            return int(m[1])
+    return 1
+
+
+def _has_bare_options(low: str) -> bool:
+    return any(a != b and {int(a), int(b)} <= RAM_SIZES and max(int(a), int(b)) <= 128
+               for a, b in _BARE_OPTIONS.findall(low))
+
+
 def parse_computer(title: str, category: str, condition_id: str | None = None) -> Memory | None:
-    """The memory a laptop, desktop or server listing claims, or None if it can't be a deal:
-    no memory, memory that is certainly soldered, an accessory, or a pick-your-spec listing."""
+    """The memory a laptop, desktop or server listing claims (a job lot's total), or None if it can't
+    be a deal: no memory, memory that is certainly soldered, an accessory, or a pick-your-spec listing."""
     low = " ".join(title.lower().split())
     if _NO_RAM.search(low) or _NOT_A_COMPUTER.search(low) or _CHOOSE.search(low) or _SOLDERED_CERTAIN.search(low):
         return None
-    if _APPLE.search(low) and _APPLE_SILICON.search(low):
+    if (_APPLE.search(low) and _APPLE_SILICON.search(low)) or _has_bare_options(low):
         return None
     size = _ram_size(low, category)
     if size is None:
         return None
     gb, confidence = size
+    # A job lot's title gives one computer's memory, so the lot holds that many times over. Taken
+    # as inferred, because a few titles give the total instead.
+    quantity = lot_quantity(low)
+    if quantity > 1:
+        gb, confidence = gb * quantity, "inferred"
     generations, type_warning = _generations(low, category)
     warnings = [type_warning] if type_warning else []
     if confidence == "inferred":
@@ -243,7 +286,7 @@ def parse_computer(title: str, category: str, condition_id: str | None = None) -
         warnings.append("ram-may-be-soldered")
     if _FAULTY.search(low) or str(condition_id or "") == "7000":
         warnings.append("untested-or-faulty")
-    return Memory(gb, generations, _form(low, category), confidence, tuple(sort_warnings(warnings)))
+    return Memory(gb, generations, _form(low, category), confidence, tuple(sort_warnings(warnings)), quantity)
 
 
 _MODULE_REJECT = re.compile(

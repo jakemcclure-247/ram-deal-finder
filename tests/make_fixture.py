@@ -5,7 +5,15 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from ram_deal_finder import config
+
 OUT = Path(__file__).parent / "fixtures" / "ebay.json"
+# The fixture answers a search by "<category id>|<q>", so the keys follow the searches in config.py.
+LAPTOP_32 = f"{config.LAPTOPS}|{config.size_query(32)}"
+DESKTOP_32 = f"{config.DESKTOPS}|{config.size_query(32)}"
+DESKTOP_64 = f"{config.DESKTOPS}|{config.size_query(64)}"
+SERVER_64 = f"{config.SERVERS}|{config.size_query(64)}"
+SERVER_128 = f"{config.SERVERS}|{config.size_query(128)}"
 _next = [900000000000]
 
 
@@ -70,7 +78,7 @@ def build() -> dict:
             module("Samsung 32GB DDR4 PC4-2400T-R ECC Registered RDIMM Server Memory", 40),
             module("Dell PowerEdge R730 2x Xeon E5-2680 v4 64GB DDR4 RDIMM", 180),
         ],
-        "177|32GB": [
+        LAPTOP_32: [
             computer(800000000001, "Dell Latitude 5490 i5-8350U 32GB RAM 256GB SSD - cracked screen, spares or repairs",
                      55, 6.99, "Leeds", "08:14", ("For parts or not working", "7000")),
             computer(800000000002, "Lenovo ThinkPad T480 i5-8250U 32GB RAM 512GB SSD", 260, 0, "Bristol", "07:30"),
@@ -78,19 +86,19 @@ def build() -> dict:
             computer(800000000004, "Apple MacBook Pro 14 M1 Pro 32GB 1TB spares or repairs", 90, 10, "London", "06:55"),
             computer(800000000005, "Dell Latitude 5590 i7-8650U No RAM No HDD (supports 32GB)", 40, 8, "Derby", "06:40"),
         ],
-        "179|32GB": [
+        DESKTOP_32: [
             optiplex,
             computer(800000000012, "Custom Gaming PC Ryzen 5 5600X 32GB RAM RTX 3060 12GB 1TB NVMe", 520, 25, "Cardiff", "07:50"),
             computer(800000000014, "Dell OptiPlex 3080 Micro i5-10500T 8GB/16GB/32GB RAM - choose your spec", 95, 0, "Luton", "07:20"),
         ],
-        "179|64GB": [
+        DESKTOP_64: [
             computer(800000000013, "HP EliteDesk 800 G4 Mini i5-8500T 64GB RAM 256GB NVMe", 120, 8, "Reading", "07:45"),
             optiplex,  # the same listing found by a second search is counted once
         ],
-        "11211|64GB": [
+        SERVER_64: [
             computer(800000000022, "HP ProLiant DL380 Gen9 2x E5-2680 v4 64GB DDR4 no HDD", 230, 20, "Slough", "06:30"),
         ],
-        "11211|128GB": [
+        SERVER_128: [
             computer(800000000021, "Dell PowerEdge R720 2x E5-2650 v2 128GB DDR3 8x 600GB SAS", 150, None, "Crewe", "06:20"),
         ],
     }

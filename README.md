@@ -13,9 +13,15 @@ It uses eBay's official Browse API only. It never fetches or scrapes eBay's webs
    and works out a price per GB for each kind from the listings whose titles make the generation, form
    and capacity clear. Postage is left out. The **reference price is the lower quartile**, and the median
    and sample size are published beside it. A kind with fewer than 5 usable listings gets no price.
-3. Searches laptops, desktops and servers whose titles mention 32GB or more, newest first, capped at the
-   most that much memory could be worth. Buy It Now listings only (the API's default); auctions are left
-   out because their price isn't final.
+3. Searches laptops, desktops and servers in three ways (`ram_deal_finder/config.py`):
+   - **By size:** titles with a size next to a memory word ("32GB RAM", "32GB DDR4"...), cheapest first,
+     capped at the most that much DDR3/DDR4 memory could be worth. Everything returned is a candidate.
+   - **DDR5:** the same, capped with the DDR5 price, which is several times higher.
+   - **Job lots:** "job lot", "bulk", "wholesale" and "pallet" listings, newest first. The title's count
+     is multiplied by one computer's memory ("Job Lot x 6 ... 8GB RAM" is 48GB), always with the
+     `ram-size-inferred` warning. A lot that gives no count is valued as one computer.
+
+   Buy It Now listings only (the API's default); auctions are left out because their price isn't final.
 4. Reads each title for memory size, generation and form (`ram_deal_finder/parse.py`), then:
 
    ```
@@ -32,7 +38,7 @@ Where the title leaves doubt, the estimate takes the cheaper reading and the dea
 
 | Code | Meaning |
 | --- | --- |
-| `ram-size-inferred` | No word in the title says which size is the memory, or the listing offers several sizes (the smallest is used) |
+| `ram-size-inferred` | No word in the title says which size is the memory, the listing offers several sizes (the smallest is used), or it is a job lot (count times one computer's memory) |
 | `ram-type-assumed` | Generation taken from the processor or server model |
 | `ram-type-uncertain` | Could be DDR4 or DDR5 (priced as the cheaper) |
 | `ram-type-unknown` | Nothing to go on (priced as the cheapest generation) |
@@ -94,8 +100,8 @@ the previous feed stays. A push only runs the tests.
 Add the repository secrets `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET` (Settings → Secrets and variables →
 Actions), and `EPN_CAMPAIGN_ID` if you have one.
 
-**API calls:** 19 a run (1 token, 9 memory searches, 9 computer searches), about 230 a day. The client
-stops itself at 40 calls in one run. eBay allows 1,000 application tokens a day; the Browse API's own
+**API calls:** 31 to 41 a run (1 token, 9 memory searches, 21 computer searches, some of which take a
+second page), so at most about 500 a day. The client stops itself at 60 calls in one run. eBay allows 1,000 application tokens a day; the Browse API's own
 daily allowance is shown under Application Keys in the developer account.
 
 ## eBay's terms that shape this

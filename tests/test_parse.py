@@ -40,6 +40,28 @@ COMPUTERS = [
      ["ram-size-inferred", "ram-type-assumed"]),
     ("Dell Latitude 5490 i5-8350U 32GB RAM - spares or repairs", "laptop", 32, ("DDR4",), "SODIMM", "stated",
      ["ram-type-assumed", "untested-or-faulty"]),
+    # job lots: the count times one computer's memory, always marked inferred
+    ("Job Lot x 6 HP ProBook 640 G4, i5-8250U, 8GB RAM, NO OS/SSD", "laptop", 48, ("DDR4",), "SODIMM", "inferred",
+     ["ram-size-inferred", "ram-type-assumed"]),
+    ("JOBLOT 10 X HP Elitebook 840 G5 ( 16gb ram 256gb SSD, Intel Core i7 )", "laptop", 160, (), "SODIMM", "inferred",
+     ["ram-size-inferred", "ram-type-unknown"]),
+    ("8 Job Lot HP EliteBook 840 G5 14\" Core i5-8th Gen 8GB RAM 256GB SSD", "laptop", 64, ("DDR4",), "SODIMM", "inferred",
+     ["ram-size-inferred", "ram-type-assumed"]),
+    ("Joblot Dell i5 PC Optiplex 3040 x 15 i5 6th Gen 8GB RAM 500gb HDD PC", "desktop", 120, ("DDR4",), "DIMM", "inferred",
+     ["ram-size-inferred", "ram-type-assumed"]),
+    ("Job Lot of 5 Acer Veriton L6610G, i5 processor, 4GB RAM mini towers", "desktop", 20, (), "SODIMM", "inferred",
+     ["ram-size-inferred", "ram-type-unknown"]),
+    ("10x Lenovo ThinkPad X260 i5-6200U Win 10 Pro 12.5\" Laptop 8GB RAM 128GB SSD JOB LOT", "laptop", 80, ("DDR4",),
+     "SODIMM", "inferred", ["ram-size-inferred", "ram-type-assumed"]),
+    # X260 is the model, not a count of 260; with no count given it is valued as one laptop
+    ("Lenovo ThinkPad X260 i5-6200U 12.5\" Laptop 8GB RAM 256GB SSD JOB LOT", "laptop", 8, ("DDR4",), "SODIMM", "stated",
+     ["ram-type-assumed"]),
+    # "bulk quantities available" is one computer's price
+    ("HP ProBook 430 G5 Core i5 8th Gen 8GB RAM 256GB SSD BULK QUANTITIES AVAILABLE", "laptop", 8, ("DDR4",), "SODIMM",
+     "stated", ["ram-type-assumed"]),
+    # "Gold 1518" isn't a Xeon Scalable number, so the R440 decides: DDR4
+    ("Dell PowerEdge R440, 256gb RAM, Intel Xeon R Gold 1518 CPU, 1.2TB Drives", "server", 256, ("DDR4",), "RDIMM", "stated",
+     ["ram-type-assumed"]),
 ]
 
 
@@ -66,6 +88,12 @@ def test_computer_titles(title, category, gb, generations, form, confidence, war
     ("Dell VFR5T 256GB 6Gbps SATA M.2 2280 SSD - 1yr Wty", "server"),   # a drive: the size is the drive's
     ("Lenovo ThinkSmart HUB 500 AIO PC-i5-7500T 128GB M. 2,8GB RAM-NO OS", "desktop"),
     ("HP ENVY x2 13-j000na Detachable PC For Spares Or Repair 128gb", "desktop"),
+    ("Samsung Chromebook 13.3in Intel Celeron 1.10GHz 64GB RAM Chrome OS", "laptop"),   # storage called RAM
+    ("HP ProBook 640 G8 quad-core i5 11th Gen , 8/16/32GB RAM", "laptop"),               # sizes on offer
+    ("Upgrade from 8GB DDR5 RAM to 16GB DDR5 RAM", "desktop"),
+    ("Dell 0XW5C iDRAC VFLASH 8GB SD Flash Card job lot 67 pieces", "server"),          # cards, not computers
+    ("Dell Latitude 7400 2-in-1 Motherboard with Intel Core I7 8665U 16GB RAM", "laptop"),
+    ("Joblot 5 Lenovo ThinkPad L580 i5-8250U, No RAM, No NVMe SSD", "laptop"),
 ])
 def test_computers_that_cannot_be_deals(title, category):
     assert parse_computer(title, category) is None
