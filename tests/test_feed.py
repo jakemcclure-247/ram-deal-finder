@@ -56,13 +56,13 @@ EXPECTED = {
          "ramGb": 32, "ramGeneration": "DDR4", "ramForm": "DIMM", "ramConfidence": "stated", "estRamValue": 96.77,
          "estMargin": 36.77, "warnings": ["postage-unknown"],
          # processor: 0.8 x 12 = 9.60 (no hard drive price, so the 500GB HDD counts for nothing)
-         "parts": [{"kind": "cpu", "label": "I5-6500", "count": 1, "estValue": 9.6}],
+         "parts": [{"kind": "cpu", "label": "i5-6500", "count": 1, "estValue": 9.6}],
          "estPartsValue": 9.6, "estTotalValue": 106.37, "estTotalMargin": 46.37, **SEEN},
     ],
     "partPrices": {
         "drives": [{"kind": "ssd", "pricePerGb": 0.05, "medianPerGb": 0.06, "sampleSize": 5}],
-        "models": [{"kind": "cpu", "model": "E5-2680 V4", "price": 40, "median": 40, "sampleSize": 5},
-                   {"kind": "cpu", "model": "I5-6500", "price": 12, "median": 12, "sampleSize": 5}],
+        "models": [{"kind": "cpu", "model": "E5-2680 V4", "label": "Xeon E5-2680 v4", "price": 40, "median": 40, "sampleSize": 5},
+                   {"kind": "cpu", "model": "I5-6500", "label": "i5-6500", "price": 12, "median": 12, "sampleSize": 5}],
     },
     "partsDeals": [
         # memory alone: 0.8 x 64 x 3.78 (no RDIMM price, so the cheapest DDR4) = 193.54, less 230 + 20 = -56.46
@@ -72,7 +72,7 @@ EXPECTED = {
          "location": "Slough", "listedAt": "2026-11-12T06:30:00.000Z", "price": 230, "shipping": 20, "totalCost": 250,
          "ramGb": 64, "ramGeneration": "DDR4", "ramForm": "RDIMM", "ramConfidence": "stated", "estRamValue": 193.54,
          "estMargin": -56.46, "warnings": ["ram-price-approximate"],
-         "parts": [{"kind": "cpu", "label": "2 x E5-2680 V4", "count": 2, "estValue": 64}],
+         "parts": [{"kind": "cpu", "label": "2 x Xeon E5-2680 v4", "count": 2, "estValue": 64}],
          "estPartsValue": 64, "estTotalValue": 257.54, "estTotalMargin": 7.54, **SEEN},
     ],
 }

@@ -14,31 +14,31 @@ def found(title, category):
 @pytest.mark.parametrize("title,category,expected", [
     # eight SAS hard drives and two processors
     ("Dell PowerEdge R730 2x E5-2680 v4 256GB RAM 8x 1.2TB SAS 10K", "server",
-     [("sas", "sas", 8, 1200, "8 x 1.2TB SAS hard drive"), ("cpu", "E5-2680 V4", 2, 0, "2 x E5-2680 V4")]),
+     [("sas", "sas", 8, 1200, "8 x 1.2TB SAS hard drive"), ("cpu", "E5-2680 V4", 2, 0, "2 x Xeon E5-2680 v4")]),
     # "no HDD" leaves the SSDs alone
     ("HP ProLiant DL380 Gen9 2x Xeon E5-2690v3 128GB DDR4 2x 480GB SSD no HDD", "server",
-     [("ssd", "ssd", 2, 480, "2 x 480GB SSD"), ("cpu", "E5-2690 V3", 2, 0, "2 x E5-2690 V3")]),
+     [("ssd", "ssd", 2, 480, "2 x 480GB SSD"), ("cpu", "E5-2690 V3", 2, 0, "2 x Xeon E5-2690 v3")]),
     ("HPE DL380 Gen10 Server | Dual Gold 6230 | 512GB RAM | 4TB NVMe", "server",
-     [("nvme", "nvme", 1, 4000, "4TB NVMe SSD"), ("cpu", "GOLD 6230", 2, 0, "2 x GOLD 6230")]),
+     [("nvme", "nvme", 1, 4000, "4TB NVMe SSD"), ("cpu", "GOLD 6230", 2, 0, "2 x Xeon Gold 6230")]),
     # the graphics card's own 8GB is not a drive; M.2 NVMe is NVMe; a bare "2TB SATA" is a hard drive
     ("HP Z440 E5-1620 v4 32GB RAM 512GB M.2 NVMe 2TB SATA GTX 1070 8GB", "desktop",
      [("nvme", "nvme", 1, 512, "512GB NVMe SSD"), ("hdd", "hdd", 1, 2000, "2TB hard drive"),
-      ("gpu", "GTX 1070", 1, 0, "GTX 1070"), ("cpu", "E5-1620 V4", 1, 0, "E5-1620 V4")]),
+      ("gpu", "GTX 1070", 1, 0, "GTX 1070"), ("cpu", "E5-1620 V4", 1, 0, "Xeon E5-1620 v4")]),
     ("Gaming PC Ryzen 5 5600X 32GB RAM RTX 3060 Ti 8GB 1TB NVMe", "desktop",
-     [("nvme", "nvme", 1, 1000, "1TB NVMe SSD"), ("gpu", "RTX 3060 TI", 1, 0, "RTX 3060 TI"),
-      ("cpu", "RYZEN 5 5600X", 1, 0, "RYZEN 5 5600X")]),
+     [("nvme", "nvme", 1, 1000, "1TB NVMe SSD"), ("gpu", "RTX 3060 TI", 1, 0, "RTX 3060 Ti"),
+      ("cpu", "RYZEN 5 5600X", 1, 0, "Ryzen 5 5600X")]),
     # a laptop's processor and graphics are soldered: only the drive counts
     ("Dell Latitude 5490 i5-8350U 32GB RAM 256GB SSD GTX 1050", "laptop", [("ssd", "ssd", 1, 256, "256GB SSD")]),
     # a size with no drive word beside it is not counted
     ("Lenovo ThinkPad T480 i5-8250U 16GB 512GB", "laptop", []),
     # a NUC's processor is soldered; a laptop chip in a desktop title likewise
     ("Intel NUC i5-8259U 16GB RAM 500GB SSD", "desktop", [("ssd", "ssd", 1, 500, "500GB SSD")]),
-    ("Dell PowerEdge R640 E5-2650 v4 x2 64GB No Drives", "server", [("cpu", "E5-2650 V4", 2, 0, "2 x E5-2650 V4")]),
-    ("Dell OptiPlex 7050 SFF i5-6500 16GB RAM no SSD", "desktop", [("cpu", "I5-6500", 1, 0, "I5-6500")]),
-    ("Intel S2600TP Compute Node 2x Eight-Core E5-2630v3 64GB Memory", "server", [("cpu", "E5-2630 V3", 2, 0, "2 x E5-2630 V3")]),
+    ("Dell PowerEdge R640 E5-2650 v4 x2 64GB No Drives", "server", [("cpu", "E5-2650 V4", 2, 0, "2 x Xeon E5-2650 v4")]),
+    ("Dell OptiPlex 7050 SFF i5-6500 16GB RAM no SSD", "desktop", [("cpu", "I5-6500", 1, 0, "i5-6500")]),
+    ("Intel S2600TP Compute Node 2x Eight-Core E5-2630v3 64GB Memory", "server", [("cpu", "E5-2630 V3", 2, 0, "2 x Xeon E5-2630 v3")]),
     # a job lot: six of everything
     ("Job Lot x 6 HP ProDesk 600 G3 SFF i5-6500 8GB RAM 256GB SSD", "desktop",
-     [("ssd", "ssd", 6, 256, "6 x 256GB SSD"), ("cpu", "I5-6500", 6, 0, "6 x I5-6500")]),
+     [("ssd", "ssd", 6, 256, "6 x 256GB SSD"), ("cpu", "I5-6500", 6, 0, "6 x i5-6500")]),
     # eMMC is soldered
     ("HP Stream 11 Celeron N4020 4GB RAM 64GB eMMC", "laptop", []),
 ])

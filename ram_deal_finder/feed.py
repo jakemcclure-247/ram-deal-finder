@@ -12,7 +12,7 @@ from pathlib import Path
 from . import config
 from .ebay import PAGE_SIZE
 from .parse import WARNING_ORDER, parse_computer, sort_warnings
-from .parts import computer_parts, drive_sample, model_query, model_sample
+from .parts import computer_parts, drive_sample, model_label, model_query, model_sample
 from .pricing import (DRIVE_KINDS, FORMS, GENERATIONS, RESALE_FACTOR, drive_prices, estimate, lookup, model_price,
                       module_sample, part_value, reference_prices)
 
@@ -129,7 +129,8 @@ def part_prices(drives: list[dict], models: dict[tuple[str, str], list[dict]]) -
                   if _text(i.get("title")) and not has_variations(i) and model_sample(i["title"], kind, model)]
         found = model_price(kind, model, [p for p in prices if p])
         if found:
-            priced.append(found)
+            priced.append({"kind": kind, "model": model, "label": model_label(kind, model), "price": found["price"],
+                           "median": found["median"], "sampleSize": found["sampleSize"]})
     return {"drives": drive_prices(samples), "models": sorted(priced, key=lambda m: (m["kind"], m["model"]))}
 
 
@@ -286,7 +287,7 @@ def validate_feed(feed: dict) -> None:
         check(list(ref) == ["kind", "pricePerGb", "medianPerGb", "sampleSize"] and ref["kind"] in DRIVE_KINDS, "drive price")
         check(_number(ref["pricePerGb"]) and ref["pricePerGb"] > 0 and isinstance(ref["sampleSize"], int), "drive price")
     for ref in feed["partPrices"]["models"]:
-        check(list(ref) == ["kind", "model", "price", "median", "sampleSize"] and ref["kind"] in ("gpu", "cpu"), "model price")
+        check(list(ref) == ["kind", "model", "label", "price", "median", "sampleSize"] and ref["kind"] in ("gpu", "cpu"), "model price")
         check(_number(ref["price"]) and ref["price"] > 0 and isinstance(ref["sampleSize"], int), "model price")
     margins = [d.get("estMargin") for d in feed["deals"]]
     totals = [d.get("estTotalMargin") for d in feed["partsDeals"]]

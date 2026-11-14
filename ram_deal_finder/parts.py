@@ -149,13 +149,29 @@ def computer_parts(title: str, category: str) -> list[Part]:
     if category == "desktop":
         model = gpu_model(low)
         if model:
-            parts.append(Part("gpu", model, lot, 0, model if lot == 1 else f"{lot} x {model}"))
+            name = model_label("gpu", model)
+            parts.append(Part("gpu", model, lot, 0, name if lot == 1 else f"{lot} x {name}"))
     if category in ("desktop", "server") and not _SOLDERED_CPU.search(low):
         cpu = cpu_model(low)
         if cpu:
             count = min(_cpu_count(low, cpu[1], cpu[2]), 8) * lot
-            parts.append(Part("cpu", cpu[0], count, 0, cpu[0] if count == 1 else f"{count} x {cpu[0]}"))
+            name = model_label("cpu", cpu[0])
+            parts.append(Part("cpu", cpu[0], count, 0, name if count == 1 else f"{count} x {name}"))
     return parts
+
+
+def model_label(kind: str, key: str) -> str:
+    """The model as people write it: "RTX 3060 Ti", "i5-6500", "Xeon E5-2680 v4", "Xeon Gold 6230"."""
+    if kind == "gpu":
+        words = {"QUADRO": "Quadro", "ARC": "Arc", "TI": "Ti", "SUPER": "Super"}
+        return " ".join(words.get(w, w) for w in key.split())
+    if key.startswith("I"):
+        return "i" + key[1:]
+    if re.match(r"E[357]-", key):
+        return "Xeon " + key.replace(" V", " v")
+    if key.split()[0] in ("BRONZE", "SILVER", "GOLD", "PLATINUM"):
+        return "Xeon " + key.capitalize().upper().replace(key.split()[0], key.split()[0].capitalize())
+    return key.replace("RYZEN", "Ryzen")
 
 
 def model_query(kind: str, key: str) -> str:
