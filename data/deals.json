@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-11-14T09:42:43.068Z",
+ "generatedAt": "2026-11-14T09:52:57.525Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1709,
-  "memoryListingsSampled": 1465,
-  "newDealsThisRun": 0
+  "listingsScanned": 1320,
+  "memoryListingsSampled": 1466,
+  "newDealsThisRun": 1
  },
  "referencePrices": [
   {
@@ -14,7 +14,7 @@
    "form": "SODIMM",
    "pricePerGb": 1.25,
    "medianPerGb": 1.5,
-   "sampleSize": 168
+   "sampleSize": 167
   },
   {
    "generation": "DDR3",
@@ -27,15 +27,15 @@
    "generation": "DDR3",
    "form": "RDIMM",
    "pricePerGb": 0.67,
-   "medianPerGb": 0.89,
+   "medianPerGb": 0.9,
    "sampleSize": 177
   },
   {
    "generation": "DDR4",
    "form": "SODIMM",
-   "pricePerGb": 2.8,
-   "medianPerGb": 3.11,
-   "sampleSize": 168
+   "pricePerGb": 2.76,
+   "medianPerGb": 3.08,
+   "sampleSize": 166
   },
   {
    "generation": "DDR4",
@@ -49,21 +49,21 @@
    "form": "RDIMM",
    "pricePerGb": 2.64,
    "medianPerGb": 3.25,
-   "sampleSize": 179
+   "sampleSize": 180
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 8.97,
-   "medianPerGb": 9.82,
-   "sampleSize": 162
+   "pricePerGb": 9.02,
+   "medianPerGb": 9.88,
+   "sampleSize": 163
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.99,
-   "medianPerGb": 12.37,
-   "sampleSize": 39
+   "pricePerGb": 10.88,
+   "medianPerGb": 12.28,
+   "sampleSize": 38
   },
   {
    "generation": "DDR5",
@@ -73,5 +73,32 @@
    "sampleSize": 18
   }
  ],
- "deals": []
+ "deals": [
+  {
+   "id": "v1|167031254414|0",
+   "title": "HP C7000 16x HP BL460c G8 E5-2660 128-Cores 1024GB 1TB RAM Blade Solution",
+   "url": "https://www.ebay.co.uk/itm/167031254414",
+   "image": "https://i.ebayimg.com/images/g/H2wAAOSwXB1nEina/s-l225.jpg",
+   "category": "server",
+   "condition": "Used",
+   "location": "BB7***",
+   "listedAt": "2024-10-18T09:26:57.000Z",
+   "price": 500,
+   "shipping": null,
+   "totalCost": 500,
+   "ramGb": 1024,
+   "ramGeneration": "DDR3",
+   "ramForm": "RDIMM",
+   "ramConfidence": "inferred",
+   "estRamValue": 548.86,
+   "estMargin": 48.86,
+   "warnings": [
+    "ram-size-inferred",
+    "ram-type-assumed",
+    "postage-unknown"
+   ],
+   "firstSeenAt": "2026-11-14T09:52:57.525Z",
+   "lastSeenAt": "2026-11-14T09:52:57.525Z"
+  }
+ ]
 }
