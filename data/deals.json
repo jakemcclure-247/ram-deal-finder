@@ -1,20 +1,20 @@
 {
- "generatedAt": "2026-11-14T20:47:59.406Z",
+ "generatedAt": "2026-11-15T01:59:23.112Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1321,
-  "memoryListingsSampled": 1463,
-  "newDealsThisRun": 0
+  "listingsScanned": 1322,
+  "memoryListingsSampled": 1466,
+  "newDealsThisRun": 1
  },
  "referencePrices": [
   {
    "generation": "DDR3",
    "form": "SODIMM",
-   "pricePerGb": 1.22,
+   "pricePerGb": 1.25,
    "medianPerGb": 1.5,
-   "sampleSize": 163
+   "sampleSize": 165
   },
   {
    "generation": "DDR3",
@@ -28,14 +28,14 @@
    "form": "RDIMM",
    "pricePerGb": 0.68,
    "medianPerGb": 0.94,
-   "sampleSize": 174
+   "sampleSize": 176
   },
   {
    "generation": "DDR4",
    "form": "SODIMM",
-   "pricePerGb": 2.8,
+   "pricePerGb": 2.81,
    "medianPerGb": 3.12,
-   "sampleSize": 176
+   "sampleSize": 173
   },
   {
    "generation": "DDR4",
@@ -47,23 +47,23 @@
   {
    "generation": "DDR4",
    "form": "RDIMM",
-   "pricePerGb": 2.64,
-   "medianPerGb": 3.18,
-   "sampleSize": 172
+   "pricePerGb": 2.69,
+   "medianPerGb": 3.24,
+   "sampleSize": 178
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 9.06,
-   "medianPerGb": 9.91,
-   "sampleSize": 160
+   "pricePerGb": 9.08,
+   "medianPerGb": 9.95,
+   "sampleSize": 162
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.52,
-   "medianPerGb": 11.94,
-   "sampleSize": 38
+   "pricePerGb": 10.79,
+   "medianPerGb": 12.19,
+   "sampleSize": 39
   },
   {
    "generation": "DDR5",
@@ -102,34 +102,64 @@
    "estTotalValue": 557.06,
    "estTotalMargin": 57.06,
    "firstSeenAt": "2026-11-14T09:52:57.525Z",
-   "lastSeenAt": "2026-11-14T20:47:59.406Z"
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
+  },
+  {
+   "id": "v1|800675916851|0",
+   "title": "Toshiba Equium M70-337 32GB RAM No Hard Drive - XP Era",
+   "url": "https://www.ebay.co.uk/itm/800675916851",
+   "image": "https://i.ebayimg.com/images/g/q7UAAeSwEu1qq-9F/s-l225.jpg",
+   "category": "laptop",
+   "condition": "For parts or not working",
+   "location": "LA1***",
+   "listedAt": "2026-09-17T13:47:56.000Z",
+   "price": 22,
+   "shipping": 0,
+   "totalCost": 22,
+   "ramGb": 32,
+   "ramGeneration": null,
+   "ramForm": "SODIMM",
+   "ramConfidence": "stated",
+   "estRamValue": 32,
+   "estMargin": 10,
+   "warnings": [
+    "ram-type-unknown",
+    "ram-price-approximate",
+    "untested-or-faulty"
+   ],
+   "parts": [],
+   "estPartsValue": 0,
+   "estTotalValue": 32,
+   "estTotalMargin": 10,
+   "firstSeenAt": "2026-11-15T01:59:23.112Z",
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
   }
  ],
  "partPrices": {
   "drives": [
    {
     "kind": "nvme",
-    "pricePerGb": 0.0831,
-    "medianPerGb": 0.0976,
-    "sampleSize": 111
+    "pricePerGb": 0.0839,
+    "medianPerGb": 0.099,
+    "sampleSize": 107
    },
    {
     "kind": "ssd",
     "pricePerGb": 0.0714,
-    "medianPerGb": 0.0826,
-    "sampleSize": 135
+    "medianPerGb": 0.082,
+    "sampleSize": 133
    },
    {
     "kind": "hdd",
     "pricePerGb": 0.0167,
     "medianPerGb": 0.0216,
-    "sampleSize": 214
+    "sampleSize": 216
    },
    {
     "kind": "sas",
-    "pricePerGb": 0.0105,
+    "pricePerGb": 0.0101,
     "medianPerGb": 0.0125,
-    "sampleSize": 113
+    "sampleSize": 114
    }
   ],
   "models": [
@@ -259,7 +289,7 @@
    "estTotalValue": 304.04,
    "estTotalMargin": 74.54,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-14T20:47:59.406Z"
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
   },
   {
    "id": "v1|287544610143|0",
@@ -277,8 +307,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 15.62,
-   "estMargin": -20.95,
+   "estRamValue": 16,
+   "estMargin": -20.57,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate"
@@ -292,10 +322,10 @@
     }
    ],
    "estPartsValue": 57.12,
-   "estTotalValue": 72.74,
-   "estTotalMargin": 36.17,
+   "estTotalValue": 73.12,
+   "estTotalMargin": 36.55,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-14T20:47:59.406Z"
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
   },
   {
    "id": "v1|267718215361|0",
@@ -313,8 +343,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "RDIMM",
    "ramConfidence": "stated",
-   "estRamValue": 135.17,
-   "estMargin": -9.83,
+   "estRamValue": 137.73,
+   "estMargin": -7.27,
    "warnings": [
     "ram-type-assumed"
    ],
@@ -327,10 +357,10 @@
     }
    ],
    "estPartsValue": 16.22,
-   "estTotalValue": 151.39,
-   "estTotalMargin": 6.39,
+   "estTotalValue": 153.95,
+   "estTotalMargin": 8.95,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-14T20:47:59.406Z"
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
   },
   {
    "id": "v1|128077869738|0",
@@ -372,7 +402,7 @@
    "estTotalValue": 52.83,
    "estTotalMargin": 5.33,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-14T20:47:59.406Z"
+   "lastSeenAt": "2026-11-15T01:59:23.112Z"
   }
  ]
 }
