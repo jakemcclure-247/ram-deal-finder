@@ -1,76 +1,76 @@
 {
- "generatedAt": "2026-11-17T13:36:46.308Z",
+ "generatedAt": "2026-11-17T22:28:48.853Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1354,
-  "memoryListingsSampled": 1468,
+  "listingsScanned": 1324,
+  "memoryListingsSampled": 1473,
   "newDealsThisRun": 0
  },
  "referencePrices": [
   {
    "generation": "DDR3",
    "form": "SODIMM",
-   "pricePerGb": 1.15,
+   "pricePerGb": 1.23,
    "medianPerGb": 1.5,
-   "sampleSize": 149
+   "sampleSize": 150
   },
   {
    "generation": "DDR3",
    "form": "DIMM",
-   "pricePerGb": 1.21,
+   "pricePerGb": 1.18,
    "medianPerGb": 1.37,
-   "sampleSize": 156
+   "sampleSize": 155
   },
   {
    "generation": "DDR3",
    "form": "RDIMM",
    "pricePerGb": 0.66,
    "medianPerGb": 0.9,
+   "sampleSize": 173
+  },
+  {
+   "generation": "DDR4",
+   "form": "SODIMM",
+   "pricePerGb": 2.8,
+   "medianPerGb": 3.12,
+   "sampleSize": 175
+  },
+  {
+   "generation": "DDR4",
+   "form": "DIMM",
+   "pricePerGb": 3.0,
+   "medianPerGb": 3.44,
    "sampleSize": 171
   },
   {
    "generation": "DDR4",
-   "form": "SODIMM",
-   "pricePerGb": 2.84,
-   "medianPerGb": 3.12,
-   "sampleSize": 174
-  },
-  {
-   "generation": "DDR4",
-   "form": "DIMM",
-   "pricePerGb": 3.06,
-   "medianPerGb": 3.44,
-   "sampleSize": 176
-  },
-  {
-   "generation": "DDR4",
    "form": "RDIMM",
-   "pricePerGb": 2.7,
-   "medianPerGb": 3.22,
-   "sampleSize": 168
+   "pricePerGb": 2.72,
+   "medianPerGb": 3.25,
+   "sampleSize": 171
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 8.91,
-   "medianPerGb": 9.87,
-   "sampleSize": 162
+   "pricePerGb": 9.1,
+   "medianPerGb": 10.14,
+   "sampleSize": 160
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.23,
-   "medianPerGb": 12.5,
-   "sampleSize": 34
+   "pricePerGb": 10.51,
+   "medianPerGb": 12.4,
+   "sampleSize": 38
   },
   {
    "generation": "DDR5",
    "form": "RDIMM",
-   "pricePerGb": 20.56,
-   "medianPerGb": 23.67,
-   "sampleSize": 18
+   "pricePerGb": 20.02,
+   "medianPerGb": 23.39,
+   "sampleSize": 19
   }
  ],
  "deals": [
@@ -102,7 +102,7 @@
    "estTotalValue": 540.67,
    "estTotalMargin": 40.67,
    "firstSeenAt": "2026-11-14T09:52:57.525Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   },
   {
    "id": "v1|800675916851|0",
@@ -120,8 +120,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 29.44,
-   "estMargin": 7.44,
+   "estRamValue": 31.49,
+   "estMargin": 9.49,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate",
@@ -129,10 +129,10 @@
    ],
    "parts": [],
    "estPartsValue": 0,
-   "estTotalValue": 29.44,
-   "estTotalMargin": 7.44,
+   "estTotalValue": 31.49,
+   "estTotalMargin": 9.49,
    "firstSeenAt": "2026-11-15T01:59:23.112Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   },
   {
    "id": "v1|168811632088|0",
@@ -150,8 +150,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "DIMM",
    "ramConfidence": "inferred",
-   "estRamValue": 235.01,
-   "estMargin": 5.51,
+   "estRamValue": 230.4,
+   "estMargin": 0.9,
    "warnings": [
     "ram-size-inferred",
     "ram-type-assumed",
@@ -166,40 +166,48 @@
     }
    ],
    "estPartsValue": 103.68,
-   "estTotalValue": 338.69,
-   "estTotalMargin": 109.19,
+   "estTotalValue": 334.08,
+   "estTotalMargin": 104.58,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   }
  ],
  "partPrices": {
   "drives": [
    {
     "kind": "nvme",
-    "pricePerGb": 0.0879,
-    "medianPerGb": 0.099,
-    "sampleSize": 109
+    "pricePerGb": 0.0849,
+    "medianPerGb": 0.1,
+    "sampleSize": 114
    },
    {
     "kind": "ssd",
-    "pricePerGb": 0.0718,
+    "pricePerGb": 0.0715,
     "medianPerGb": 0.0833,
-    "sampleSize": 143
+    "sampleSize": 134
    },
    {
     "kind": "hdd",
-    "pricePerGb": 0.0172,
-    "medianPerGb": 0.0209,
-    "sampleSize": 218
+    "pricePerGb": 0.0173,
+    "medianPerGb": 0.0216,
+    "sampleSize": 204
    },
    {
     "kind": "sas",
     "pricePerGb": 0.01,
-    "medianPerGb": 0.0126,
-    "sampleSize": 107
+    "medianPerGb": 0.013,
+    "sampleSize": 112
    }
   ],
   "models": [
+   {
+    "kind": "cpu",
+    "model": "E5-2407",
+    "label": "Xeon E5-2407",
+    "price": 6.52,
+    "median": 15.95,
+    "sampleSize": 9
+   },
    {
     "kind": "cpu",
     "model": "E5-2620",
@@ -244,49 +252,41 @@
     "kind": "cpu",
     "model": "I3-3220",
     "label": "i3-3220",
-    "price": 3.91,
-    "median": 5.99,
-    "sampleSize": 59
+    "price": 3.94,
+    "median": 6.25,
+    "sampleSize": 60
    },
    {
     "kind": "cpu",
-    "model": "I3-4160",
-    "label": "i3-4160",
-    "price": 3.29,
-    "median": 7.09,
-    "sampleSize": 36
+    "model": "I3-8100",
+    "label": "i3-8100",
+    "price": 8.66,
+    "median": 11.33,
+    "sampleSize": 57
    },
    {
     "kind": "cpu",
-    "model": "I5-3470",
-    "label": "i5-3470",
-    "price": 6.99,
-    "median": 9.73,
-    "sampleSize": 64
+    "model": "I5-12400",
+    "label": "i5-12400",
+    "price": 99.99,
+    "median": 125.5,
+    "sampleSize": 9
    },
    {
     "kind": "cpu",
     "model": "I5-4570",
     "label": "i5-4570",
-    "price": 9.98,
-    "median": 10.79,
-    "sampleSize": 32
+    "price": 9.99,
+    "median": 10.8,
+    "sampleSize": 31
    },
    {
     "kind": "cpu",
     "model": "I5-6500",
     "label": "i5-6500",
     "price": 10.8,
-    "median": 15.08,
+    "median": 15.0,
     "sampleSize": 89
-   },
-   {
-    "kind": "gpu",
-    "model": "GT 710",
-    "label": "GT 710",
-    "price": 17.96,
-    "median": 19.99,
-    "sampleSize": 166
    }
   ]
  },
@@ -307,8 +307,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 14.72,
-   "estMargin": -21.85,
+   "estRamValue": 15.74,
+   "estMargin": -20.83,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate"
@@ -318,14 +318,14 @@
      "kind": "ssd",
      "label": "1TB SSD",
      "count": 1,
-     "estValue": 57.44
+     "estValue": 57.2
     }
    ],
-   "estPartsValue": 57.44,
-   "estTotalValue": 72.16,
-   "estTotalMargin": 35.59,
+   "estPartsValue": 57.2,
+   "estTotalValue": 72.94,
+   "estTotalMargin": 36.37,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   },
   {
    "id": "v1|267718215361|0",
@@ -343,8 +343,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "RDIMM",
    "ramConfidence": "stated",
-   "estRamValue": 138.24,
-   "estMargin": -6.76,
+   "estRamValue": 139.26,
+   "estMargin": -5.74,
    "warnings": [
     "ram-type-assumed"
    ],
@@ -357,10 +357,10 @@
     }
    ],
    "estPartsValue": 16.22,
-   "estTotalValue": 154.46,
-   "estTotalMargin": 9.46,
+   "estTotalValue": 155.48,
+   "estTotalMargin": 10.48,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   },
   {
    "id": "v1|128077869738|0",
@@ -378,8 +378,8 @@
    "ramGeneration": "DDR3",
    "ramForm": "DIMM",
    "ramConfidence": "stated",
-   "estRamValue": 30.98,
-   "estMargin": -16.52,
+   "estRamValue": 30.21,
+   "estMargin": -17.29,
    "warnings": [
     "ram-type-assumed",
     "postage-unknown"
@@ -389,20 +389,20 @@
      "kind": "hdd",
      "label": "1TB hard drive",
      "count": 1,
-     "estValue": 13.76
+     "estValue": 13.84
     },
     {
      "kind": "cpu",
      "label": "i5-4570",
      "count": 1,
-     "estValue": 7.98
+     "estValue": 7.99
     }
    ],
-   "estPartsValue": 21.74,
-   "estTotalValue": 52.72,
-   "estTotalMargin": 5.22,
+   "estPartsValue": 21.83,
+   "estTotalValue": 52.04,
+   "estTotalMargin": 4.54,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-17T13:36:46.308Z"
+   "lastSeenAt": "2026-11-17T22:28:48.853Z"
   }
  ]
 }
