@@ -1,25 +1,25 @@
 {
- "generatedAt": "2026-11-22T02:19:50.197Z",
+ "generatedAt": "2026-11-22T12:41:49.584Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1343,
+  "listingsScanned": 1356,
   "memoryListingsSampled": 1469,
-  "newDealsThisRun": 1
+  "newDealsThisRun": 0
  },
  "referencePrices": [
   {
    "generation": "DDR3",
    "form": "SODIMM",
-   "pricePerGb": 1.15,
-   "medianPerGb": 1.59,
+   "pricePerGb": 1.25,
+   "medianPerGb": 1.63,
    "sampleSize": 158
   },
   {
    "generation": "DDR3",
    "form": "DIMM",
-   "pricePerGb": 1.22,
+   "pricePerGb": 1.21,
    "medianPerGb": 1.36,
    "sampleSize": 160
   },
@@ -27,43 +27,43 @@
    "generation": "DDR3",
    "form": "RDIMM",
    "pricePerGb": 0.66,
-   "medianPerGb": 0.89,
-   "sampleSize": 179
+   "medianPerGb": 0.9,
+   "sampleSize": 180
   },
   {
    "generation": "DDR4",
    "form": "SODIMM",
    "pricePerGb": 2.81,
-   "medianPerGb": 3.12,
-   "sampleSize": 173
+   "medianPerGb": 3.09,
+   "sampleSize": 170
   },
   {
    "generation": "DDR4",
    "form": "DIMM",
-   "pricePerGb": 3.08,
+   "pricePerGb": 3.09,
    "medianPerGb": 3.62,
-   "sampleSize": 166
+   "sampleSize": 170
   },
   {
    "generation": "DDR4",
    "form": "RDIMM",
-   "pricePerGb": 2.79,
-   "medianPerGb": 3.42,
-   "sampleSize": 178
+   "pricePerGb": 2.81,
+   "medianPerGb": 3.37,
+   "sampleSize": 181
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 9.19,
+   "pricePerGb": 9.14,
    "medianPerGb": 10.44,
-   "sampleSize": 165
+   "sampleSize": 166
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.16,
-   "medianPerGb": 12.47,
-   "sampleSize": 28
+   "pricePerGb": 10.18,
+   "medianPerGb": 12.57,
+   "sampleSize": 26
   },
   {
    "generation": "DDR5",
@@ -74,41 +74,6 @@
   }
  ],
  "deals": [
-  {
-   "id": "v1|940112283427|0",
-   "title": "HP ProLiant DL380p Gen8 Rack Server 2x Xeon E5-2680 256GB DDR3 646901-421",
-   "url": "https://www.ebay.co.uk/itm/940112283427",
-   "image": "https://i.ebayimg.com/images/g/OPsAAeSwhT9rAh6f/s-l225.jpg",
-   "category": "server",
-   "condition": "For parts or not working",
-   "location": "BT62***",
-   "listedAt": "2026-11-21T22:46:13.000Z",
-   "price": 41.27,
-   "shipping": 13.63,
-   "totalCost": 54.9,
-   "ramGb": 256,
-   "ramGeneration": "DDR3",
-   "ramForm": "RDIMM",
-   "ramConfidence": "stated",
-   "estRamValue": 135.17,
-   "estMargin": 80.27,
-   "warnings": [
-    "untested-or-faulty"
-   ],
-   "parts": [
-    {
-     "kind": "cpu",
-     "label": "2 x Xeon E5-2680",
-     "count": 2,
-     "estValue": 10.4
-    }
-   ],
-   "estPartsValue": 10.4,
-   "estTotalValue": 145.57,
-   "estTotalMargin": 90.67,
-   "firstSeenAt": "2026-11-22T02:19:50.197Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
-  },
   {
    "id": "v1|167031254414|0",
    "title": "HP C7000 16x HP BL460c G8 E5-2660 128-Cores 1024GB 1TB RAM Blade Solution",
@@ -137,7 +102,7 @@
    "estTotalValue": 540.67,
    "estTotalMargin": 40.67,
    "firstSeenAt": "2026-11-14T09:52:57.525Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   },
   {
    "id": "v1|800675916851|0",
@@ -155,8 +120,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 29.44,
-   "estMargin": 7.44,
+   "estRamValue": 32,
+   "estMargin": 10,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate",
@@ -164,10 +129,10 @@
    ],
    "parts": [],
    "estPartsValue": 0,
-   "estTotalValue": 29.44,
-   "estTotalMargin": 7.44,
+   "estTotalValue": 32,
+   "estTotalMargin": 10,
    "firstSeenAt": "2026-11-15T01:59:23.112Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   },
   {
    "id": "v1|168811632088|0",
@@ -185,8 +150,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "DIMM",
    "ramConfidence": "inferred",
-   "estRamValue": 236.54,
-   "estMargin": 7.04,
+   "estRamValue": 237.31,
+   "estMargin": 7.81,
    "warnings": [
     "ram-size-inferred",
     "ram-type-assumed",
@@ -201,40 +166,56 @@
     }
    ],
    "estPartsValue": 103.68,
-   "estTotalValue": 340.22,
-   "estTotalMargin": 110.72,
+   "estTotalValue": 340.99,
+   "estTotalMargin": 111.49,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   }
  ],
  "partPrices": {
   "drives": [
    {
     "kind": "nvme",
-    "pricePerGb": 0.0867,
-    "medianPerGb": 0.0986,
-    "sampleSize": 133
+    "pricePerGb": 0.085,
+    "medianPerGb": 0.0977,
+    "sampleSize": 128
    },
    {
     "kind": "ssd",
-    "pricePerGb": 0.0702,
+    "pricePerGb": 0.0723,
     "medianPerGb": 0.0833,
-    "sampleSize": 139
+    "sampleSize": 135
    },
    {
     "kind": "hdd",
-    "pricePerGb": 0.0173,
-    "medianPerGb": 0.0205,
-    "sampleSize": 221
+    "pricePerGb": 0.0172,
+    "medianPerGb": 0.0206,
+    "sampleSize": 216
    },
    {
     "kind": "sas",
-    "pricePerGb": 0.0105,
-    "medianPerGb": 0.0133,
-    "sampleSize": 121
+    "pricePerGb": 0.0108,
+    "medianPerGb": 0.0141,
+    "sampleSize": 118
    }
   ],
   "models": [
+   {
+    "kind": "cpu",
+    "model": "E5-2407",
+    "label": "Xeon E5-2407",
+    "price": 6.52,
+    "median": 16.04,
+    "sampleSize": 9
+   },
+   {
+    "kind": "cpu",
+    "model": "E5-2430 V2",
+    "label": "Xeon E5-2430 v2",
+    "price": 17.5,
+    "median": 22.01,
+    "sampleSize": 10
+   },
    {
     "kind": "cpu",
     "model": "E5-2620",
@@ -266,14 +247,6 @@
     "price": 15.08,
     "median": 35.45,
     "sampleSize": 9
-   },
-   {
-    "kind": "cpu",
-    "model": "E5-2680",
-    "label": "Xeon E5-2680",
-    "price": 6.5,
-    "median": 40.0,
-    "sampleSize": 5
    },
    {
     "kind": "cpu",
@@ -311,9 +284,9 @@
     "kind": "gpu",
     "model": "GT 710",
     "label": "GT 710",
-    "price": 18.32,
+    "price": 18.4,
     "median": 19.99,
-    "sampleSize": 159
+    "sampleSize": 158
    }
   ]
  },
@@ -334,8 +307,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 14.72,
-   "estMargin": -23.49,
+   "estRamValue": 16,
+   "estMargin": -22.21,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate"
@@ -345,14 +318,14 @@
      "kind": "ssd",
      "label": "1TB SSD",
      "count": 1,
-     "estValue": 56.16
+     "estValue": 57.84
     }
    ],
-   "estPartsValue": 56.16,
-   "estTotalValue": 70.88,
-   "estTotalMargin": 32.67,
+   "estPartsValue": 57.84,
+   "estTotalValue": 73.84,
+   "estTotalMargin": 35.63,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   },
   {
    "id": "v1|267718215361|0",
@@ -370,8 +343,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "RDIMM",
    "ramConfidence": "stated",
-   "estRamValue": 142.85,
-   "estMargin": -2.15,
+   "estRamValue": 143.87,
+   "estMargin": -1.13,
    "warnings": [
     "ram-type-assumed"
    ],
@@ -384,10 +357,10 @@
     }
    ],
    "estPartsValue": 15.98,
-   "estTotalValue": 158.83,
-   "estTotalMargin": 13.83,
+   "estTotalValue": 159.85,
+   "estTotalMargin": 14.85,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   },
   {
    "id": "v1|128077869738|0",
@@ -405,8 +378,8 @@
    "ramGeneration": "DDR3",
    "ramForm": "DIMM",
    "ramConfidence": "stated",
-   "estRamValue": 31.23,
-   "estMargin": -16.27,
+   "estRamValue": 30.98,
+   "estMargin": -16.52,
    "warnings": [
     "ram-type-assumed",
     "postage-unknown"
@@ -416,7 +389,7 @@
      "kind": "hdd",
      "label": "1TB hard drive",
      "count": 1,
-     "estValue": 13.84
+     "estValue": 13.76
     },
     {
      "kind": "cpu",
@@ -425,11 +398,11 @@
      "estValue": 7.99
     }
    ],
-   "estPartsValue": 21.83,
-   "estTotalValue": 53.06,
-   "estTotalMargin": 5.56,
+   "estPartsValue": 21.75,
+   "estTotalValue": 52.73,
+   "estTotalMargin": 5.23,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-22T02:19:50.197Z"
+   "lastSeenAt": "2026-11-22T12:41:49.584Z"
   }
  ]
 }
