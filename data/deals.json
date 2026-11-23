@@ -1,27 +1,27 @@
 {
- "generatedAt": "2026-11-23T02:54:20.442Z",
+ "generatedAt": "2026-11-23T14:52:43.720Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1370,
-  "memoryListingsSampled": 1471,
+  "listingsScanned": 1348,
+  "memoryListingsSampled": 1476,
   "newDealsThisRun": 0
  },
  "referencePrices": [
   {
    "generation": "DDR3",
    "form": "SODIMM",
-   "pricePerGb": 1.25,
-   "medianPerGb": 1.63,
-   "sampleSize": 160
+   "pricePerGb": 1.24,
+   "medianPerGb": 1.62,
+   "sampleSize": 156
   },
   {
    "generation": "DDR3",
    "form": "DIMM",
    "pricePerGb": 1.25,
    "medianPerGb": 1.36,
-   "sampleSize": 159
+   "sampleSize": 157
   },
   {
    "generation": "DDR3",
@@ -33,44 +33,44 @@
   {
    "generation": "DDR4",
    "form": "SODIMM",
-   "pricePerGb": 2.83,
+   "pricePerGb": 2.81,
    "medianPerGb": 3.09,
-   "sampleSize": 169
+   "sampleSize": 168
   },
   {
    "generation": "DDR4",
    "form": "DIMM",
-   "pricePerGb": 3.12,
-   "medianPerGb": 3.73,
-   "sampleSize": 169
+   "pricePerGb": 3.08,
+   "medianPerGb": 3.62,
+   "sampleSize": 165
   },
   {
    "generation": "DDR4",
    "form": "RDIMM",
    "pricePerGb": 2.81,
-   "medianPerGb": 3.44,
-   "sampleSize": 183
+   "medianPerGb": 3.39,
+   "sampleSize": 182
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 9.13,
-   "medianPerGb": 10.0,
-   "sampleSize": 166
+   "pricePerGb": 9.14,
+   "medianPerGb": 10.11,
+   "sampleSize": 168
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.59,
-   "medianPerGb": 12.64,
-   "sampleSize": 27
+   "pricePerGb": 11.02,
+   "medianPerGb": 12.72,
+   "sampleSize": 30
   },
   {
    "generation": "DDR5",
    "form": "RDIMM",
-   "pricePerGb": 23.06,
-   "medianPerGb": 26.08,
-   "sampleSize": 16
+   "pricePerGb": 22.52,
+   "medianPerGb": 24.12,
+   "sampleSize": 17
   }
  ],
  "deals": [
@@ -102,44 +102,7 @@
    "estTotalValue": 540.67,
    "estTotalMargin": 40.67,
    "firstSeenAt": "2026-11-14T09:52:57.525Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
-  },
-  {
-   "id": "v1|168811632088|0",
-   "title": "Job lot  12 x HP 280 G2 Desktop PC, Intel i5-6500,NO HDD/SSD at least 8GB ram",
-   "url": "https://www.ebay.co.uk/itm/168811632088",
-   "image": "https://i.ebayimg.com/images/g/y24AAeSwJRtq20MF/s-l225.jpg",
-   "category": "desktop",
-   "condition": "Used",
-   "location": "SG13***",
-   "listedAt": "2026-10-23T11:22:16.000Z",
-   "price": 229.5,
-   "shipping": null,
-   "totalCost": 229.5,
-   "ramGb": 96,
-   "ramGeneration": "DDR4",
-   "ramForm": "DIMM",
-   "ramConfidence": "inferred",
-   "estRamValue": 239.62,
-   "estMargin": 10.12,
-   "warnings": [
-    "ram-size-inferred",
-    "ram-type-assumed",
-    "postage-unknown"
-   ],
-   "parts": [
-    {
-     "kind": "cpu",
-     "label": "12 x i5-6500",
-     "count": 12,
-     "estValue": 103.58
-    }
-   ],
-   "estPartsValue": 103.58,
-   "estTotalValue": 343.2,
-   "estTotalMargin": 113.7,
-   "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
   },
   {
    "id": "v1|800675916851|0",
@@ -157,8 +120,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 32,
-   "estMargin": 10,
+   "estRamValue": 31.74,
+   "estMargin": 9.74,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate",
@@ -166,37 +129,74 @@
    ],
    "parts": [],
    "estPartsValue": 0,
-   "estTotalValue": 32,
-   "estTotalMargin": 10,
+   "estTotalValue": 31.74,
+   "estTotalMargin": 9.74,
    "firstSeenAt": "2026-11-15T01:59:23.112Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
+  },
+  {
+   "id": "v1|168811632088|0",
+   "title": "Job lot  12 x HP 280 G2 Desktop PC, Intel i5-6500,NO HDD/SSD at least 8GB ram",
+   "url": "https://www.ebay.co.uk/itm/168811632088",
+   "image": "https://i.ebayimg.com/images/g/y24AAeSwJRtq20MF/s-l225.jpg",
+   "category": "desktop",
+   "condition": "Used",
+   "location": "SG13***",
+   "listedAt": "2026-10-23T11:22:16.000Z",
+   "price": 229.5,
+   "shipping": null,
+   "totalCost": 229.5,
+   "ramGb": 96,
+   "ramGeneration": "DDR4",
+   "ramForm": "DIMM",
+   "ramConfidence": "inferred",
+   "estRamValue": 236.54,
+   "estMargin": 7.04,
+   "warnings": [
+    "ram-size-inferred",
+    "ram-type-assumed",
+    "postage-unknown"
+   ],
+   "parts": [
+    {
+     "kind": "cpu",
+     "label": "12 x i5-6500",
+     "count": 12,
+     "estValue": 103.58
+    }
+   ],
+   "estPartsValue": 103.58,
+   "estTotalValue": 340.12,
+   "estTotalMargin": 110.62,
+   "firstSeenAt": "2026-11-14T10:08:45.362Z",
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
   }
  ],
  "partPrices": {
   "drives": [
    {
     "kind": "nvme",
-    "pricePerGb": 0.084,
-    "medianPerGb": 0.0968,
-    "sampleSize": 128
+    "pricePerGb": 0.0785,
+    "medianPerGb": 0.0918,
+    "sampleSize": 132
    },
    {
     "kind": "ssd",
-    "pricePerGb": 0.0708,
-    "medianPerGb": 0.0847,
-    "sampleSize": 134
+    "pricePerGb": 0.0714,
+    "medianPerGb": 0.0833,
+    "sampleSize": 135
    },
    {
     "kind": "hdd",
-    "pricePerGb": 0.0167,
-    "medianPerGb": 0.0204,
-    "sampleSize": 222
+    "pricePerGb": 0.0173,
+    "medianPerGb": 0.0207,
+    "sampleSize": 216
    },
    {
     "kind": "sas",
-    "pricePerGb": 0.0103,
+    "pricePerGb": 0.0108,
     "medianPerGb": 0.013,
-    "sampleSize": 114
+    "sampleSize": 120
    }
   ],
   "models": [
@@ -207,6 +207,14 @@
     "price": 6.52,
     "median": 16.04,
     "sampleSize": 9
+   },
+   {
+    "kind": "cpu",
+    "model": "E5-2430 V2",
+    "label": "Xeon E5-2430 v2",
+    "price": 17.5,
+    "median": 22.01,
+    "sampleSize": 10
    },
    {
     "kind": "cpu",
@@ -262,7 +270,7 @@
     "label": "i5-4570",
     "price": 9.99,
     "median": 10.8,
-    "sampleSize": 33
+    "sampleSize": 34
    },
    {
     "kind": "cpu",
@@ -276,7 +284,7 @@
     "kind": "gpu",
     "model": "GT 710",
     "label": "GT 710",
-    "price": 18.75,
+    "price": 18.82,
     "median": 20.0,
     "sampleSize": 156
    }
@@ -292,15 +300,15 @@
    "condition": "New",
    "location": "GB",
    "listedAt": "2026-08-25T06:48:59.000Z",
-   "price": 38.21,
+   "price": 39.2,
    "shipping": 0,
-   "totalCost": 38.21,
+   "totalCost": 39.2,
    "ramGb": 16,
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 16,
-   "estMargin": -22.21,
+   "estRamValue": 15.87,
+   "estMargin": -23.33,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate"
@@ -310,14 +318,14 @@
      "kind": "ssd",
      "label": "1TB SSD",
      "count": 1,
-     "estValue": 56.64
+     "estValue": 57.12
     }
    ],
-   "estPartsValue": 56.64,
-   "estTotalValue": 72.64,
-   "estTotalMargin": 34.43,
+   "estPartsValue": 57.12,
+   "estTotalValue": 72.99,
+   "estTotalMargin": 33.79,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
   },
   {
    "id": "v1|267718215361|0",
@@ -352,7 +360,7 @@
    "estTotalValue": 159.85,
    "estTotalMargin": 14.85,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
   },
   {
    "id": "v1|128077869738|0",
@@ -381,7 +389,7 @@
      "kind": "hdd",
      "label": "1TB hard drive",
      "count": 1,
-     "estValue": 13.36
+     "estValue": 13.84
     },
     {
      "kind": "cpu",
@@ -390,11 +398,11 @@
      "estValue": 7.99
     }
    ],
-   "estPartsValue": 21.35,
-   "estTotalValue": 53.35,
-   "estTotalMargin": 5.85,
+   "estPartsValue": 21.83,
+   "estTotalValue": 53.83,
+   "estTotalMargin": 6.33,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-23T02:54:20.442Z"
+   "lastSeenAt": "2026-11-23T14:52:43.720Z"
   }
  ]
 }
