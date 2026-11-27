@@ -1,69 +1,69 @@
 {
- "generatedAt": "2026-11-27T08:46:35.285Z",
+ "generatedAt": "2026-11-27T19:31:43.937Z",
  "marketplace": "EBAY_GB",
  "currency": "GBP",
  "affiliateLinks": false,
  "stats": {
-  "listingsScanned": 1354,
-  "memoryListingsSampled": 1477,
+  "listingsScanned": 1359,
+  "memoryListingsSampled": 1473,
   "newDealsThisRun": 0
  },
  "referencePrices": [
   {
    "generation": "DDR3",
    "form": "SODIMM",
-   "pricePerGb": 1.26,
+   "pricePerGb": 1.25,
    "medianPerGb": 1.63,
-   "sampleSize": 162
+   "sampleSize": 160
   },
   {
    "generation": "DDR3",
    "form": "DIMM",
    "pricePerGb": 1.21,
    "medianPerGb": 1.36,
-   "sampleSize": 148
+   "sampleSize": 151
   },
   {
    "generation": "DDR3",
    "form": "RDIMM",
-   "pricePerGb": 0.64,
-   "medianPerGb": 0.89,
-   "sampleSize": 173
+   "pricePerGb": 0.62,
+   "medianPerGb": 0.87,
+   "sampleSize": 172
   },
   {
    "generation": "DDR4",
    "form": "SODIMM",
-   "pricePerGb": 2.77,
-   "medianPerGb": 3.06,
-   "sampleSize": 169
+   "pricePerGb": 2.69,
+   "medianPerGb": 2.97,
+   "sampleSize": 166
   },
   {
    "generation": "DDR4",
    "form": "DIMM",
    "pricePerGb": 3.08,
    "medianPerGb": 3.5,
-   "sampleSize": 168
+   "sampleSize": 164
   },
   {
    "generation": "DDR4",
    "form": "RDIMM",
-   "pricePerGb": 2.75,
-   "medianPerGb": 3.24,
-   "sampleSize": 172
+   "pricePerGb": 2.76,
+   "medianPerGb": 3.29,
+   "sampleSize": 174
   },
   {
    "generation": "DDR5",
    "form": "SODIMM",
-   "pricePerGb": 9.34,
-   "medianPerGb": 10.44,
-   "sampleSize": 161
+   "pricePerGb": 9.14,
+   "medianPerGb": 10.09,
+   "sampleSize": 163
   },
   {
    "generation": "DDR5",
    "form": "DIMM",
-   "pricePerGb": 10.49,
-   "medianPerGb": 12.37,
-   "sampleSize": 41
+   "pricePerGb": 10.43,
+   "medianPerGb": 12.43,
+   "sampleSize": 40
   },
   {
    "generation": "DDR5",
@@ -74,78 +74,6 @@
   }
  ],
  "deals": [
-  {
-   "id": "v1|167031254414|0",
-   "title": "HP C7000 16x HP BL460c G8 E5-2660 128-Cores 1024GB 1TB RAM Blade Solution",
-   "url": "https://www.ebay.co.uk/itm/167031254414",
-   "image": "https://i.ebayimg.com/images/g/H2wAAOSwXB1nEina/s-l225.jpg",
-   "category": "server",
-   "condition": "Used",
-   "location": "BB7***",
-   "listedAt": "2024-10-18T09:26:57.000Z",
-   "price": 500,
-   "shipping": null,
-   "totalCost": 500,
-   "ramGb": 1024,
-   "ramGeneration": "DDR3",
-   "ramForm": "RDIMM",
-   "ramConfidence": "inferred",
-   "estRamValue": 524.29,
-   "estMargin": 24.29,
-   "warnings": [
-    "ram-size-inferred",
-    "ram-type-assumed",
-    "postage-unknown"
-   ],
-   "parts": [],
-   "estPartsValue": 0,
-   "estTotalValue": 524.29,
-   "estTotalMargin": 24.29,
-   "firstSeenAt": "2026-11-14T09:52:57.525Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
-  },
-  {
-   "id": "v1|820229089947|0",
-   "title": "Dell Optiplex 7050, Intel i7-7700K CPU, 32GB RAM, 1TB SSD, 60 Hz Monitor+Input",
-   "url": "https://www.ebay.co.uk/itm/820229089947",
-   "image": "https://i.ebayimg.com/images/g/OhQAAeSw59lqzCTJ/s-l225.jpg",
-   "category": "desktop",
-   "condition": "Used",
-   "location": "SW6***",
-   "listedAt": "2026-10-12T00:08:13.000Z",
-   "price": 63.09,
-   "shipping": null,
-   "totalCost": 63.09,
-   "ramGb": 32,
-   "ramGeneration": "DDR4",
-   "ramForm": "DIMM",
-   "ramConfidence": "stated",
-   "estRamValue": 78.85,
-   "estMargin": 15.76,
-   "warnings": [
-    "ram-type-assumed",
-    "postage-unknown"
-   ],
-   "parts": [
-    {
-     "kind": "ssd",
-     "label": "1TB SSD",
-     "count": 1,
-     "estValue": 53.92
-    },
-    {
-     "kind": "cpu",
-     "label": "i7-7700K",
-     "count": 1,
-     "estValue": 55.59
-    }
-   ],
-   "estPartsValue": 109.51,
-   "estTotalValue": 188.36,
-   "estTotalMargin": 125.27,
-   "firstSeenAt": "2026-11-24T02:57:23.161Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
-  },
   {
    "id": "v1|307298112518|0",
    "title": "Dell Inspiron 13.3in AMD Athlon 64 32GB RAM Black Laptop + Adapter Parts",
@@ -162,8 +90,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 32.26,
-   "estMargin": 10.9,
+   "estRamValue": 32,
+   "estMargin": 10.64,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate",
@@ -171,10 +99,10 @@
    ],
    "parts": [],
    "estPartsValue": 0,
-   "estTotalValue": 32.26,
-   "estTotalMargin": 10.9,
+   "estTotalValue": 32,
+   "estTotalMargin": 10.64,
    "firstSeenAt": "2026-11-24T02:57:23.161Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   },
   {
    "id": "v1|800675916851|0",
@@ -192,8 +120,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 32.26,
-   "estMargin": 10.26,
+   "estRamValue": 32,
+   "estMargin": 10,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate",
@@ -201,10 +129,40 @@
    ],
    "parts": [],
    "estPartsValue": 0,
-   "estTotalValue": 32.26,
-   "estTotalMargin": 10.26,
+   "estTotalValue": 32,
+   "estTotalMargin": 10,
    "firstSeenAt": "2026-11-15T01:59:23.112Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
+  },
+  {
+   "id": "v1|167031254414|0",
+   "title": "HP C7000 16x HP BL460c G8 E5-2660 128-Cores 1024GB 1TB RAM Blade Solution",
+   "url": "https://www.ebay.co.uk/itm/167031254414",
+   "image": "https://i.ebayimg.com/images/g/H2wAAOSwXB1nEina/s-l225.jpg",
+   "category": "server",
+   "condition": "Used",
+   "location": "BB7***",
+   "listedAt": "2024-10-18T09:26:57.000Z",
+   "price": 500,
+   "shipping": null,
+   "totalCost": 500,
+   "ramGb": 1024,
+   "ramGeneration": "DDR3",
+   "ramForm": "RDIMM",
+   "ramConfidence": "inferred",
+   "estRamValue": 507.9,
+   "estMargin": 7.9,
+   "warnings": [
+    "ram-size-inferred",
+    "ram-type-assumed",
+    "postage-unknown"
+   ],
+   "parts": [],
+   "estPartsValue": 0,
+   "estTotalValue": 507.9,
+   "estTotalMargin": 7.9,
+   "firstSeenAt": "2026-11-14T09:52:57.525Z",
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   },
   {
    "id": "v1|168811632088|0",
@@ -234,41 +192,41 @@
      "kind": "cpu",
      "label": "12 x i5-6500",
      "count": 12,
-     "estValue": 99.74
+     "estValue": 101.66
     }
    ],
-   "estPartsValue": 99.74,
-   "estTotalValue": 336.28,
-   "estTotalMargin": 106.78,
+   "estPartsValue": 101.66,
+   "estTotalValue": 338.2,
+   "estTotalMargin": 108.7,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   }
  ],
  "partPrices": {
   "drives": [
    {
     "kind": "nvme",
-    "pricePerGb": 0.0846,
-    "medianPerGb": 0.099,
-    "sampleSize": 129
+    "pricePerGb": 0.0875,
+    "medianPerGb": 0.0989,
+    "sampleSize": 119
    },
    {
     "kind": "ssd",
-    "pricePerGb": 0.0674,
-    "medianPerGb": 0.08,
-    "sampleSize": 146
+    "pricePerGb": 0.0703,
+    "medianPerGb": 0.0833,
+    "sampleSize": 142
    },
    {
     "kind": "hdd",
-    "pricePerGb": 0.017,
-    "medianPerGb": 0.021,
-    "sampleSize": 233
+    "pricePerGb": 0.0173,
+    "medianPerGb": 0.0216,
+    "sampleSize": 229
    },
    {
     "kind": "sas",
-    "pricePerGb": 0.01,
+    "pricePerGb": 0.0099,
     "medianPerGb": 0.0125,
-    "sampleSize": 116
+    "sampleSize": 120
    }
   ],
   "models": [
@@ -290,19 +248,19 @@
    },
    {
     "kind": "cpu",
-    "model": "E5-2620",
-    "label": "Xeon E5-2620",
-    "price": 5.2,
-    "median": 10.0,
-    "sampleSize": 11
-   },
-   {
-    "kind": "cpu",
     "model": "E5-2630 V3",
     "label": "Xeon E5-2630 v3",
     "price": 9.75,
     "median": 12.35,
     "sampleSize": 30
+   },
+   {
+    "kind": "cpu",
+    "model": "E5-2640",
+    "label": "Xeon E5-2640",
+    "price": 8.08,
+    "median": 10.36,
+    "sampleSize": 10
    },
    {
     "kind": "cpu",
@@ -332,33 +290,33 @@
     "kind": "cpu",
     "model": "I3-8100",
     "label": "i3-8100",
-    "price": 8.66,
-    "median": 11.33,
-    "sampleSize": 60
+    "price": 8.32,
+    "median": 10.8,
+    "sampleSize": 63
    },
    {
     "kind": "cpu",
     "model": "I5-4570",
     "label": "i5-4570",
-    "price": 9.99,
-    "median": 10.8,
-    "sampleSize": 31
+    "price": 9.98,
+    "median": 10.79,
+    "sampleSize": 32
    },
    {
     "kind": "cpu",
     "model": "I5-6500",
     "label": "i5-6500",
-    "price": 10.39,
-    "median": 15.0,
-    "sampleSize": 99
+    "price": 10.59,
+    "median": 15.1,
+    "sampleSize": 100
    },
    {
     "kind": "cpu",
-    "model": "I7-7700K",
-    "label": "i7-7700K",
-    "price": 69.49,
-    "median": 74.99,
-    "sampleSize": 13
+    "model": "I7-6700",
+    "label": "i7-6700",
+    "price": 29.99,
+    "median": 35.01,
+    "sampleSize": 54
    }
   ]
  },
@@ -379,8 +337,8 @@
    "ramGeneration": null,
    "ramForm": "SODIMM",
    "ramConfidence": "stated",
-   "estRamValue": 16.13,
-   "estMargin": -23.07,
+   "estRamValue": 16,
+   "estMargin": -23.2,
    "warnings": [
     "ram-type-unknown",
     "ram-price-approximate"
@@ -390,14 +348,14 @@
      "kind": "ssd",
      "label": "1TB SSD",
      "count": 1,
-     "estValue": 53.92
+     "estValue": 56.24
     }
    ],
-   "estPartsValue": 53.92,
-   "estTotalValue": 70.05,
-   "estTotalMargin": 30.85,
+   "estPartsValue": 56.24,
+   "estTotalValue": 72.24,
+   "estTotalMargin": 33.04,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   },
   {
    "id": "v1|267718215361|0",
@@ -415,8 +373,8 @@
    "ramGeneration": "DDR4",
    "ramForm": "RDIMM",
    "ramConfidence": "stated",
-   "estRamValue": 140.8,
-   "estMargin": -4.2,
+   "estRamValue": 141.31,
+   "estMargin": -3.69,
    "warnings": [
     "ram-type-assumed"
    ],
@@ -429,10 +387,10 @@
     }
    ],
    "estPartsValue": 15.6,
-   "estTotalValue": 156.4,
-   "estTotalMargin": 11.4,
+   "estTotalValue": 156.91,
+   "estTotalMargin": 11.91,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   },
   {
    "id": "v1|128077869738|0",
@@ -461,20 +419,20 @@
      "kind": "hdd",
      "label": "1TB hard drive",
      "count": 1,
-     "estValue": 13.6
+     "estValue": 13.84
     },
     {
      "kind": "cpu",
      "label": "i5-4570",
      "count": 1,
-     "estValue": 7.99
+     "estValue": 7.98
     }
    ],
-   "estPartsValue": 21.59,
-   "estTotalValue": 52.57,
-   "estTotalMargin": 5.07,
+   "estPartsValue": 21.82,
+   "estTotalValue": 52.8,
+   "estTotalMargin": 5.3,
    "firstSeenAt": "2026-11-14T10:08:45.362Z",
-   "lastSeenAt": "2026-11-27T08:46:35.285Z"
+   "lastSeenAt": "2026-11-27T19:31:43.937Z"
   }
  ]
 }
